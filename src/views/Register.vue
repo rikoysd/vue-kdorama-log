@@ -36,6 +36,7 @@ export default class XXXComponent extends Vue {
       text: this.text,
       watchDate: this.watchDate,
     });
+    this.$router.push("/logList");
   }
 }
 </script>

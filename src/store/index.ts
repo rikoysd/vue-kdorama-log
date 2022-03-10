@@ -1,18 +1,18 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { Log } from "@/types/Log";
+import Vue from "vue";
+import Vuex from "vuex";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    logList: [new Log(0, "", "", new Date())],
   },
   mutations: {
-    // registerLog(state,payload){
-    //   state.
-    // }
+    registerLog(state, payload) {
+      state.logList.push(payload);
+    },
   },
-  actions: {
-  },
-  modules: {
-  }
-})
+  actions: {},
+  modules: {},
+});
