@@ -1,13 +1,16 @@
 <template>
   <div>
+    <div class="error">{{ titleError }}</div>
     <div>
-      タイトル：
+      タイトル(必須)：
       <input type="text" v-model="title" />
     </div>
+    <div class="error">{{ textError }}</div>
     <div>
-      感想：
+      感想(必須) ：
       <textarea cols="30" rows="10" v-model="text"></textarea>
     </div>
+    <div class="error">{{ watchDateError }}</div>
     <div>
       鑑賞日：
       <input type="date" v-model="watchDate" />
@@ -26,11 +29,33 @@ export default class XXXComponent extends Vue {
   private text = "";
   // 鑑賞日
   private watchDate = new Date();
+  // タイトルのエラー
+  private titleError = "";
+  // 感想のエラー
+  private textError = "";
+  // エラーチェック
+  private errorChecker = true;
 
   /**
    * 鑑賞作品を登録する.
    */
   registerLog(): void {
+    // エラー処理
+    if (this.title === "") {
+      this.titleError = "タイトルを入力してください";
+      this.errorChecker = false;
+    }
+
+    if (this.text === "") {
+      this.textError = "感想を入力してください";
+      this.errorChecker = false;
+    }
+
+    if (this.errorChecker === false) {
+      return;
+    }
+
+    // 成功の処理
     this.$store.commit("register", {
       title: this.title,
       text: this.text,
