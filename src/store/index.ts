@@ -20,7 +20,7 @@ export default new Vuex.Store({
      * @param state - ステート
      * @returns 記録作品の一覧
      */
-    showlogLost(state) {
+    showLogList(state) {
       return state.logList;
     },
   },
