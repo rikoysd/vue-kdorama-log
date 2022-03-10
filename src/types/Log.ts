@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 /**
  * 記録の部品クラスです.
  */
@@ -12,6 +13,14 @@ export class Log {
     // 鑑賞日
     private _watchDate: Date
   ) {}
+
+  /**
+   * 鑑賞日のフォーマットを変更する.
+   */
+  public get formatWatchDate(): string {
+    const formatString = format(this.watchDate, "yyyy年MM月dd日");
+    return formatString;
+  }
 
   public get id(): number {
     return this._id;

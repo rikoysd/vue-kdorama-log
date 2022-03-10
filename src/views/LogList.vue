@@ -2,7 +2,7 @@
   <div>
     <div class="block" v-for="log of currentLogList" v-bind:key="log.id">
       <div>{{ log.name }}</div>
-      <div>{{ log.watchDate }}</div>
+      <div>{{ log.formatWatchDate }}</div>
     </div>
   </div>
 </template>
