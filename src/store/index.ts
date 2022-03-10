@@ -16,7 +16,7 @@ export default new Vuex.Store({
   actions: {},
   getters: {
     /**
-     * 記録作品の一覧を取得
+     * 記録作品の一覧を取得.
      * @param state - ステート
      * @returns 記録作品の一覧
      */
