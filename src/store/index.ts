@@ -7,6 +7,9 @@ export default new Vuex.Store({
   state: {
   },
   mutations: {
+    // registerLog(state,payload){
+    //   state.
+    // }
   },
   actions: {
   },

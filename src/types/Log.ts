@@ -3,6 +3,8 @@
  */
 export class Log {
   constructor(
+    // id
+    private _id: number,
     // タイトル
     private _title: string,
     // 感想
@@ -10,6 +12,14 @@ export class Log {
     // 鑑賞日
     private _watchDate: Date
   ) {}
+
+  public get id(): number {
+    return this._id;
+  }
+
+  public set id(id: number) {
+    this._id = id;
+  }
 
   public get title(): string {
     return this._title;
