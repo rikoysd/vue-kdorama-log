@@ -6,7 +6,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    logList: [new Log(0, "", "")],
+    // logListクラスを作った方がよい
+    logList: [],
   },
   mutations: {
     /**
@@ -14,9 +15,9 @@ export default new Vuex.Store({
      * @param state - ステート
      * @param payload 登録作品情報
      */
-    registerLog(state, payload) {
-      state.logList.push(payload.log);
-    },
+    // registerLog(state, payload) {
+    //   state.logList.push(payload.log);
+    // },
   },
   actions: {},
   getters: {
@@ -33,11 +34,11 @@ export default new Vuex.Store({
      * @param state - ステート
      * @returns 作品情報
      */
-    getSearchLog(state) {
-      return (id: number) => {
-        return state.logList.filter((log) => log.id === id);
-      };
-    },
+    // getSearchLog(state) {
+    //   return (id: number) => {
+    //     return state.logList.filter((log) => log.id === id);
+    //   };
+    // },
   },
   modules: {},
 });

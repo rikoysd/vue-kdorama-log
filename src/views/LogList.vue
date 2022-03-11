@@ -4,7 +4,7 @@
     <div v-show="canShow">
       <div v-for="log of currentLogList" v-bind:key="log.id">
         <div>{{ log.title }}</div>
-        <div class="button" v-show="canShow">
+        <div class="button">
           <button>編集する</button>
           <router-link v-bind:to="'/logDetail/' + log.id"
             >詳細を見る</router-link
@@ -29,12 +29,11 @@ export default class XXXComponent extends Vue {
   private canShow = true;
 
   created(): void {
-    this.canShow = false;
-    this.errorMessage = "鑑賞した作品がありません";
     this.currentLogList = this.$store.getters.showLogList;
-    if (this.currentLogList.length >= 1) {
-      this.canShow = true;
-      this.errorMessage = "";
+
+    if (this.currentLogList.length === 0) {
+      this.canShow = false;
+      this.errorMessage = "鑑賞した作品がありません";
     }
   }
 
