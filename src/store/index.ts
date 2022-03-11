@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    logList: [new Log(0, "", "", new Date())],
+    logList: [new Log(0, "", "")],
   },
   mutations: {
     /**
@@ -15,7 +15,7 @@ export default new Vuex.Store({
      * @param payload 登録作品情報
      */
     registerLog(state, payload) {
-      state.logList.push(payload);
+      state.logList.push(payload.log);
     },
   },
   actions: {},
@@ -31,7 +31,7 @@ export default new Vuex.Store({
     /**
      * idから作品の詳細ページを取得する
      * @param state - ステート
-     * @returns 作品情報  
+     * @returns 作品情報
      */
     getSearchLog(state) {
       return (id: number) => {

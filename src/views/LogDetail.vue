@@ -17,7 +17,7 @@ import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
   // 表示されている作品
-  private currentLog = new Log(0, "", "", new Date());
+  private currentLog = new Log(0, "", "");
 
   created(): void {
     // idから詳細ページを表示させる
