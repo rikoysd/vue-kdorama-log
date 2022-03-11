@@ -9,7 +9,7 @@ export class LogList {
     // 作品数
     private _count: number,
     // 作品リスト
-    private _logList: Array<Log>
+    private _logLists: Array<Log>
   ) {}
 
   public get id(): number {
@@ -28,11 +28,11 @@ export class LogList {
     this._count = count;
   }
 
-  public get logList(): Array<Log> {
-    return this._logList;
+  public get logLists(): Array<Log> {
+    return this._logLists;
   }
 
-  public set logList(logList: Array<Log>) {
-    this._logList = logList;
+  public set logList(logLists: Array<Log>) {
+    this._logLists = logLists;
   }
 }

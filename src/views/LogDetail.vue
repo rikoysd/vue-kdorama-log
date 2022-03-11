@@ -21,8 +21,8 @@ export default class XXXComponent extends Vue {
 
   created(): void {
     // idから詳細ページを表示させる
-    const itemId = this.$route.params.id;
-    this.currentLog = this.$store.getters.getSearchLog(itemId);
+    const logId = parseInt(this.$route.params.id);
+    this.currentLog = this.$store.getters.getSearchLog(logId);
   }
 
   /**
