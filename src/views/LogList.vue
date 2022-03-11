@@ -56,7 +56,7 @@ export default class XXXComponent extends Vue {
   justify-content: space-between;
 }
 
-.button{
+.button {
   margin-top: 20px;
 }
 </style>

@@ -9,6 +9,11 @@ export default new Vuex.Store({
     logList: [new Log(0, "", "", new Date())],
   },
   mutations: {
+    /**
+     * 作品情報を登録する.
+     * @param state - ステート
+     * @param payload 登録作品情報
+     */
     registerLog(state, payload) {
       state.logList.push(payload);
     },
@@ -22,6 +27,16 @@ export default new Vuex.Store({
      */
     showLogList(state) {
       return state.logList;
+    },
+    /**
+     * idから作品の詳細ページを取得する
+     * @param state - ステート
+     * @returns 作品情報  
+     */
+    getSearchLog(state) {
+      return (id: number) => {
+        return state.logList.filter((log) => log.id === id);
+      };
     },
   },
   modules: {},
