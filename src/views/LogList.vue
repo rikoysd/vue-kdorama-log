@@ -1,14 +1,16 @@
 <template>
   <div>
     <div>{{ errorMessage }}</div>
-    <div class="block" v-show="canShow">
-      <div class="content" v-for="log of currentLogList" v-bind:key="log.id">
-        <div>{{ log.name }}</div>
-        <div>{{ log.formatWatchDate }}</div>
-      </div>
-      <div class="button">
-        <button>編集する</button>
-        <button v-on:click="clickDetail">詳細を見る</button>
+    <div v-show="canShow">
+      <div v-for="log of currentLogList" v-bind:key="log.id">
+        <div>{{ log.title }}</div>
+        <div class="button">
+          <button>編集する</button>
+          <router-link v-bind:to="'/logDetail/' + log.id"
+            >詳細を見る</router-link
+          >
+        </div>
+        <hr />
       </div>
     </div>
   </div>
@@ -28,10 +30,10 @@ export default class XXXComponent extends Vue {
 
   created(): void {
     this.currentLogList = this.$store.getters.showLogList;
+
     if (this.currentLogList.length === 0) {
-      this.errorMessage = "鑑賞した作品がありません";
       this.canShow = false;
-      return;
+      this.errorMessage = "鑑賞した作品がありません";
     }
   }
 
@@ -44,19 +46,4 @@ export default class XXXComponent extends Vue {
 }
 </script>
 
-<style scoped>
-.block {
-  border: 2px solid;
-  padding: 20px 50px;
-  width: 300px;
-}
-
-.content {
-  display: flex;
-  justify-content: space-between;
-}
-
-.button{
-  margin-top: 20px;
-}
-</style>
+<style scoped></style>

@@ -10,16 +10,12 @@
       感想(必須) ：
       <textarea cols="30" rows="10" v-model="text"></textarea>
     </div>
-    <div class="error">{{ watchDateError }}</div>
-    <div>
-      鑑賞日：
-      <input type="date" v-model="watchDate" />
-    </div>
     <button type="button" v-on:click="registerLog">登録する</button>
   </div>
 </template>
 
 <script lang="ts">
+import { Log } from "@/types/Log";
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
@@ -28,7 +24,7 @@ export default class XXXComponent extends Vue {
   // 感想
   private text = "";
   // 鑑賞日
-  private watchDate = new Date();
+  // private watchDate = new Date();
   // タイトルのエラー
   private titleError = "";
   // 感想のエラー
@@ -56,10 +52,13 @@ export default class XXXComponent extends Vue {
     }
 
     // 成功の処理
-    this.$store.commit("register", {
-      title: this.title,
-      text: this.text,
-      watchDate: this.watchDate,
+    let logList = this.$store.getters.showLogList;
+    let newId = 0;
+    if (logList.length >= 1) {
+      newId = logList[0].id + 1;
+    }
+    this.$store.commit("registerLog", {
+      log: new Log(newId, this.title, this.text),
     });
     this.$router.push("/logList");
   }
