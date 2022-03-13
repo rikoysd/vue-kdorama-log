@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="loglist">
     <div>{{ errorMessage }}</div>
     <div v-show="canShow">
       <div v-for="log of currentLogList" v-bind:key="log.id">
@@ -46,4 +46,9 @@ export default class XXXComponent extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.loglist {
+  margin-top: 100px;
+  text-align: center;
+}
+</style>

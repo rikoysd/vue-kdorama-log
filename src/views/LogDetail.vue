@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="log-detail">
     <div>
       <div>タイトル：{{ currentLog.title }}</div>
       <div>感想：{{ currentLog.text }}</div>
@@ -38,4 +38,10 @@ export default class XXXComponent extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.log-detail{
+  margin-top: 100px;
+  text-align: center;
+}
+
+</style>

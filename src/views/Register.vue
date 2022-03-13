@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div class="register-log">
     <div class="error">{{ titleError }}</div>
-    <div>
-      タイトル(必須)：
+    <div class="item">
+      <div>タイトル(必須)</div>
       <input type="text" v-model="title" />
     </div>
     <div class="error">{{ textError }}</div>
-    <div>
-      感想(必須) ：
+    <div class="item">
+      <div>感想(必須)</div>
       <textarea cols="30" rows="10" v-model="text"></textarea>
     </div>
     <button type="button" v-on:click="registerLog">登録する</button>
@@ -65,4 +65,18 @@ export default class XXXComponent extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.register-log {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.error {
+  font-size: 10px;
+  color: red;
+}
+
+.item {
+  margin-bottom: 30px;
+}
+</style>
