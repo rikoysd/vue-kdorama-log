@@ -2,9 +2,9 @@
   <div>
     <header>
       <div class="navi">
-        <router-link>登録</router-link>
-        <div>一覧</div>
-        <div>ログイン</div>
+        <router-link to="/register">登録</router-link>
+        <router-link to="/logList">一覧</router-link>
+        <!-- <router-link to="/login">ログイン</router-link> -->
       </div>
     </header>
   </div>
