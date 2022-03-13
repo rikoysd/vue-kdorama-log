@@ -5,7 +5,7 @@
       <div>感想：{{ currentLog.text }}</div>
     </div>
     <div class="button">
-      <button type="button">編集する</button>
+      <button type="button" v-on:click="editLog">編集する</button>
       <button type="button" v-on:click="backLogList">一覧に戻る</button>
     </div>
   </div>
@@ -23,6 +23,10 @@ export default class XXXComponent extends Vue {
     // idから詳細ページを表示させる
     const logId = parseInt(this.$route.params.id);
     this.currentLog = this.$store.getters.getSearchLog(logId);
+  }
+
+  editLog(): void {
+    this.$router.push("/editLog");
   }
 
   /**

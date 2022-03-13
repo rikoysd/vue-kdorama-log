@@ -25,6 +25,11 @@ const routes: Array<RouteConfig> = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/LogDetail.vue"),
   },
+  {
+    path: "/editLog",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/EditLog.vue"),
+  },
 ];
 
 const router = new VueRouter({
