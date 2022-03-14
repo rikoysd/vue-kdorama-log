@@ -73,7 +73,7 @@ export default class XXXComponent extends Vue {
 
 <style scoped>
 .register-log {
-  margin-top: 100px;
+  margin-top: 90px;
   text-align: center;
 }
 

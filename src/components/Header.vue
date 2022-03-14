@@ -2,8 +2,8 @@
   <div>
     <header>
       <div class="navi">
-        <router-link to="/register">登録</router-link>
-        <router-link to="/logList">一覧</router-link>
+        <router-link to="/register" class="menu">登録</router-link>
+        <router-link to="/logList" class="menu">一覧</router-link>
         <!-- <router-link to="/login">ログイン</router-link> -->
       </div>
     </header>
@@ -16,4 +16,13 @@ import { Component, Vue } from "vue-property-decorator";
 export default class XXXComponent extends Vue {}
 </script>
 
-<style scoped></style>
+<style scoped>
+.navi {
+  text-align: center;
+  padding: 20px;
+}
+
+.menu {
+  margin: 0 15px;
+}
+</style>
