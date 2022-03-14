@@ -1,16 +1,22 @@
 <template>
-  <div class="register-log">
-    <div class="error">{{ titleError }}</div>
-    <div class="item">
-      <div>タイトル(必須)</div>
-      <input type="text" v-model="title" />
+  <div>
+    <div class="register-log">
+      <div class="tab">
+        <button type="button" class="menu">手動で入力する</button>
+        <button type="button" class="menu">作品を検索する</button>
+      </div>
+      <div class="error">{{ titleError }}</div>
+      <div class="item">
+        <div>タイトル(必須)</div>
+        <input type="text" v-model="title" />
+      </div>
+      <div class="error">{{ textError }}</div>
+      <div class="item">
+        <div>感想(必須)</div>
+        <textarea cols="30" rows="10" v-model="text"></textarea>
+      </div>
+      <button type="button" v-on:click="registerLog">登録する</button>
     </div>
-    <div class="error">{{ textError }}</div>
-    <div class="item">
-      <div>感想(必須)</div>
-      <textarea cols="30" rows="10" v-model="text"></textarea>
-    </div>
-    <button type="button" v-on:click="registerLog">登録する</button>
   </div>
 </template>
 
@@ -69,6 +75,16 @@ export default class XXXComponent extends Vue {
 .register-log {
   margin-top: 100px;
   text-align: center;
+}
+
+.tab {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.menu {
+  margin: 0 15px;
 }
 
 .error {
