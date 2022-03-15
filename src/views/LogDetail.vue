@@ -21,10 +21,14 @@ export default class XXXComponent extends Vue {
 
   created(): void {
     // idから詳細ページを表示させる
-    const logId = parseInt(this.$route.params.id);
+    const logId = Number(this.$route.params.id);
     this.currentLog = this.$store.getters.getSearchLog(logId);
+    // console.log(this.currentLog);
   }
 
+  /**
+   * 編集ページに遷移する.
+   */
   editLog(): void {
     this.$router.push("/editLog");
   }
@@ -39,9 +43,8 @@ export default class XXXComponent extends Vue {
 </script>
 
 <style scoped>
-.log-detail{
+.log-detail {
   margin-top: 100px;
   text-align: center;
 }
-
 </style>

@@ -7,7 +7,6 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    // logListクラスを作った方がよい
     logList: new LogList(0, 0, []),
   },
   mutations: {
@@ -37,7 +36,7 @@ export default new Vuex.Store({
      */
     getSearchLog(state) {
       return (logId: number) => {
-        return state.logList.logLists.filter((log: Log) => log.id === logId);
+        return state.logList.logLists.filter((log) => log.id === logId);
       };
     },
   },
