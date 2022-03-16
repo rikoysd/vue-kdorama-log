@@ -11,8 +11,8 @@
         <div>感想(必須)</div>
         <textarea cols="30" rows="10" v-model="text"></textarea>
       </div>
-      <button type="button" v-on:click="registerLog">上書きする</button>
-      <button type="button">戻る</button>
+      <button type="button" v-on:click="overWrightLog">上書きする</button>
+      <button type="button" v-on:click="backLogDetail">戻る</button>
     </div>
   </div>
 </template>
@@ -22,7 +22,7 @@ import { Log } from "@/types/Log";
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
-// タイトル
+  // タイトル
   private title = "";
   // 感想
   private text = "";
@@ -36,9 +36,9 @@ export default class XXXComponent extends Vue {
   private errorChecker = true;
 
   /**
-   * 鑑賞作品を登録する.
+   * 鑑賞作品を更新する.
    */
-  registerLog(): void {
+  overWrightLog(): void {
     // エラー処理
     if (this.title === "") {
       this.titleError = "タイトルを入力してください";
@@ -60,10 +60,14 @@ export default class XXXComponent extends Vue {
     if (logList.length >= 1) {
       newId = logList[0].id + 1;
     }
-    this.$store.commit("registerLog", {
+    this.$store.commit("overWrightLog", {
       log: new Log(newId, this.title, this.text),
     });
-    this.$router.push("/logList");
+    this.$router.push("/logDetail");
+  }
+
+  backLogDetail(): void {
+    this.$router.push("/logDetail");
   }
 }
 </script>

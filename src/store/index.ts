@@ -35,8 +35,10 @@ export default new Vuex.Store({
      * @returns 作品情報
      */
     getSearchLog(state) {
+      console.log(state.logList.logLists);
+      // ↓配列（logLists）が返ってくるので、[0]をつける
       return (logId: number) => {
-        return state.logList.logLists.filter((log) => log.id === logId);
+        return state.logList.logLists.filter((log) => log.id === logId)[0];
       };
     },
   },

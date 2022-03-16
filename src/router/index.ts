@@ -24,7 +24,7 @@ const routes: Array<RouteConfig> = [
       import(/* webpackChunkName: "about" */ "../views/LogDetail.vue"),
   },
   {
-    path: "/editLog",
+    path: "/editLog/:id",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/EditLog.vue"),
   },
