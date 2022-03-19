@@ -18,6 +18,16 @@ export default new Vuex.Store({
     registerLog(state, payload) {
       state.logList.logLists.push(payload.log);
     },
+
+    /**
+     * 作品情報を上書きする.
+     * @param state - ステート
+     * @param payload 上書きする作品情報
+     */
+    overWrightLog(state, payload) {
+      state.logList.logLists.splice(payload.log.id, 1, payload.log);
+      console.log(state.logList);
+    },
   },
   actions: {},
   getters: {
@@ -35,7 +45,6 @@ export default new Vuex.Store({
      * @returns 作品情報
      */
     getSearchLog(state) {
-      console.log(state.logList.logLists);
       // ↓配列（logLists）が返ってくるので、[0]をつける
       return (logId: number) => {
         return state.logList.logLists.filter((log) => log.id === logId)[0];

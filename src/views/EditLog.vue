@@ -22,6 +22,8 @@ import { Log } from "@/types/Log";
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
+  // 表示されている作品
+  private currentLog = new Log(0, "", "");
   // タイトル
   private title = "";
   // 感想
@@ -34,6 +36,14 @@ export default class XXXComponent extends Vue {
   private textError = "";
   // エラーチェック
   private errorChecker = true;
+
+  created(): void {
+    // idから詳細ページを表示させる
+    const logId = Number(this.$route.params.id);
+    this.currentLog = this.$store.getters.getSearchLog(logId);
+    this.title = this.currentLog.title;
+    this.text = this.currentLog.text;
+  }
 
   /**
    * 鑑賞作品を更新する.
@@ -55,19 +65,19 @@ export default class XXXComponent extends Vue {
     }
 
     // 成功の処理
-    let logList = this.$store.getters.showLogList;
-    let newId = 0;
-    if (logList.length >= 1) {
-      newId = logList[0].id + 1;
-    }
+    const logId = Number(this.$route.params.id);
     this.$store.commit("overWrightLog", {
-      log: new Log(newId, this.title, this.text),
+      log: new Log(logId, this.title, this.text),
     });
-    this.$router.push("/logDetail");
+
+    this.$router.push("/logDetail/" + this.currentLog.id);
   }
 
+  /**
+   * 作品の詳細画面に戻る.
+   */
   backLogDetail(): void {
-    this.$router.push("/logDetail");
+    this.$router.push("/logDetail/" + this.currentLog.id);
   }
 }
 </script>
