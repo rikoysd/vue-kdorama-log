@@ -2,7 +2,7 @@
   <div>
     <header>
       <div class="navi">
-        <router-link to="/register" class="menu">登録</router-link>
+        <router-link to="/" class="menu">登録</router-link>
         <router-link to="/logList" class="menu">一覧</router-link>
         <!-- <router-link to="/login">ログイン</router-link> -->
       </div>

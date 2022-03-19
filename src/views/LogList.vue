@@ -6,8 +6,10 @@
       <div v-for="log of currentLogList" v-bind:key="log.id">
         <div>{{ log.title }}</div>
         <div class="button">
-          <button>編集する</button>
-          <router-link v-bind:to="'/logDetail/' + log.id"
+          <router-link tag="button" v-bind:to="'/editLog/' + log.id"
+            >編集する</router-link
+          >
+          <router-link tag="button" v-bind:to="'/logDetail/' + log.id"
             >詳細を見る</router-link
           >
         </div>

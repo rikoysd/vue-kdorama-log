@@ -6,12 +6,7 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    component: () => import(/* webpackChunkName: "about" */ "../views/Top.vue"),
-  },
-  {
-    path: "/register",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Register.vue"),
+    component: () => import(/* webpackChunkName: "about" */ "../views/Register.vue"),
   },
   {
     path: "/logList",
