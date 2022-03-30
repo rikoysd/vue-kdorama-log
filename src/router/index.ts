@@ -1,19 +1,12 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
-  },
-  {
-    path: "/register",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Register.vue"),
+    component: () => import(/* webpackChunkName: "about" */ "../views/Register.vue"),
   },
   {
     path: "/logList",
@@ -24,6 +17,11 @@ const routes: Array<RouteConfig> = [
     path: "/logDetail/:id",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/LogDetail.vue"),
+  },
+  {
+    path: "/editLog/:id",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/EditLog.vue"),
   },
 ];
 

@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="log-detail">
     <div>
       <div>タイトル：{{ currentLog.title }}</div>
       <div>感想：{{ currentLog.text }}</div>
     </div>
     <div class="button">
-      <button type="button">編集する</button>
+      <button type="button" v-on:click="editLog">編集する</button>
       <button type="button" v-on:click="backLogList">一覧に戻る</button>
     </div>
   </div>
@@ -21,8 +21,15 @@ export default class XXXComponent extends Vue {
 
   created(): void {
     // idから詳細ページを表示させる
-    const logId = parseInt(this.$route.params.id);
+    const logId = Number(this.$route.params.id);
     this.currentLog = this.$store.getters.getSearchLog(logId);
+  }
+
+  /**
+   * 編集ページに遷移する.
+   */
+  editLog(): void {
+    this.$router.push("/editLog/" + this.currentLog.id);
   }
 
   /**
@@ -34,4 +41,9 @@ export default class XXXComponent extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.log-detail {
+  margin-top: 100px;
+  text-align: center;
+}
+</style>

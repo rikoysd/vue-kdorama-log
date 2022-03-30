@@ -1,16 +1,35 @@
 <template>
   <div>
-    <div class="error">{{ titleError }}</div>
-    <div>
-      タイトル(必須)：
-      <input type="text" v-model="title" />
+    <div class="register-log">
+      <div class="tab">
+        <button type="button" class="menu" v-on:click="inputLogInfo">
+          手動で入力する
+        </button>
+        <button type="button" class="menu" v-on:click="serchName">
+          作品を検索する
+        </button>
+      </div>
+      <div v-show="showLogInfo">
+        <div class="error">{{ titleError }}</div>
+        <div class="item">
+          <div>タイトル(必須)</div>
+          <input type="text" v-model="title" />
+        </div>
+        <div class="error">{{ textError }}</div>
+        <div class="item">
+          <div>感想(必須)</div>
+          <textarea cols="30" rows="10" v-model="text"></textarea>
+        </div>
+        <button type="button" v-on:click="registerLog">登録する</button>
+      </div>
+      <div v-show="searchLog">
+        <div>作品を検索する</div>
+        <div class="text">
+          <input type="text" size="30" v-model="serchWord" />
+        </div>
+        <div><button type="button">検索する</button></div>
+      </div>
     </div>
-    <div class="error">{{ textError }}</div>
-    <div>
-      感想(必須) ：
-      <textarea cols="30" rows="10" v-model="text"></textarea>
-    </div>
-    <button type="button" v-on:click="registerLog">登録する</button>
   </div>
 </template>
 
@@ -31,6 +50,31 @@ export default class XXXComponent extends Vue {
   private textError = "";
   // エラーチェック
   private errorChecker = true;
+  // 「手動で入力」タブの表示・非表示
+  private showLogInfo = true;
+  // 「作品を検索する」タブの表示・非表示
+  private searchLog = false;
+  // 検索ワード
+  private serchWord = "";
+
+  async created(): Promise<void> {
+    await this.$store.dispatch("asyncGetDoramaList");
+  }
+  /**
+   * 「手動で入力」タブの表示
+   */
+  inputLogInfo(): void {
+    this.showLogInfo = true;
+    this.searchLog = false;
+  }
+
+  /**
+   * 「作品を検索する」タブの表示
+   */
+  serchName(): void {
+    this.searchLog = true;
+    this.showLogInfo = false;
+  }
 
   /**
    * 鑑賞作品を登録する.
@@ -65,4 +109,32 @@ export default class XXXComponent extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.register-log {
+  margin-top: 90px;
+  text-align: center;
+}
+
+.tab {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.menu {
+  margin: 0 15px;
+}
+
+.error {
+  font-size: 10px;
+  color: red;
+}
+
+.item {
+  margin-bottom: 30px;
+}
+
+.text {
+  margin-bottom: 20px;
+}
+</style>

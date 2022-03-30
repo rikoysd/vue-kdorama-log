@@ -1,5 +1,6 @@
-import { Log } from "@/types/Log";
+import { Dorama } from "@/types/Dorama";
 import { LogList } from "@/types/LogList";
+import axios from "axios";
 import Vue from "vue";
 import Vuex from "vuex";
 
@@ -7,8 +8,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    // logListクラスを作った方がよい
     logList: new LogList(0, 0, []),
+    doramaList: new Array<Dorama>(),
   },
   mutations: {
     /**
@@ -19,8 +20,36 @@ export default new Vuex.Store({
     registerLog(state, payload) {
       state.logList.logLists.push(payload.log);
     },
+
+    /**
+     * 作品情報を上書きする.
+     * @param state - ステート
+     * @param payload 上書きする作品情報
+     */
+    overWrightLog(state, payload) {
+      state.logList.logLists.splice(payload.log.id, 1, payload.log);
+    },
+
+    showDoramaList(state, payload) {
+      state.doramaList = new Array<Dorama>();
+      for (const dorama of payload.doramas) {
+        state.doramaList.push(
+          new Dorama(dorama.name, dorama.id, dorama.image, dorama.release)
+        );
+      }
+    },
   },
-  actions: {},
+  actions: {
+    /**
+     * ドラマ一覧のWebAPIを取得する.
+     * @param context - コンテクスト
+     */
+    async asyncGetDoramaList(context) {
+      const response = await axios.get("http://localhost:3000/dorama");
+      const payload = response.data;
+      context.commit("showDoramaList", payload);
+    },
+  },
   getters: {
     /**
      * 記録作品の一覧を取得.
@@ -36,8 +65,9 @@ export default new Vuex.Store({
      * @returns 作品情報
      */
     getSearchLog(state) {
+      // ↓配列（logLists）が返ってくるので、[0]をつける
       return (logId: number) => {
-        return state.logList.logLists.filter((log: Log) => log.id === logId);
+        return state.logList.logLists.filter((log) => log.id === logId)[0];
       };
     },
   },

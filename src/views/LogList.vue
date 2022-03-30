@@ -1,16 +1,20 @@
 <template>
-  <div>
+  <div class="loglist">
     <div>{{ errorMessage }}</div>
     <div v-show="canShow">
+      <hr />
       <div v-for="log of currentLogList" v-bind:key="log.id">
         <div>{{ log.title }}</div>
         <div class="button">
-          <button>編集する</button>
-          <router-link v-bind:to="'/logDetail/' + log.id"
+          <router-link tag="button" v-bind:to="'/editLog/' + log.id"
+            >編集する</router-link
+          >
+          <router-link tag="button" v-bind:to="'/logDetail/' + log.id"
             >詳細を見る</router-link
           >
         </div>
         <hr />
+        <div class="comment" v-show="showText">{{ log.text }}</div>
       </div>
     </div>
   </div>
@@ -27,6 +31,8 @@ export default class XXXComponent extends Vue {
   private errorMessage = "";
   // 一覧を表示・非表示
   private canShow = true;
+  // 感想を表示・非表示
+  private showText = false;
 
   created(): void {
     this.currentLogList = this.$store.getters.showLogList;
@@ -37,13 +43,19 @@ export default class XXXComponent extends Vue {
     }
   }
 
-  /**
-   * 記録作品の詳細ページに遷移する.
-   */
-  clickDetail(): void {
-    this.$router.push("/logDetail");
+  showDetail(): void {
+    if (this.showText === false) {
+      this.showText = true;
+    } else {
+      this.showText = false;
+    }
   }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.loglist {
+  margin-top: 100px;
+  text-align: center;
+}
+</style>
