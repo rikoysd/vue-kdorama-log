@@ -1,5 +1,6 @@
-import { Log } from "@/types/Log";
+import { Dorama } from "@/types/Dorama";
 import { LogList } from "@/types/LogList";
+import axios from "axios";
 import Vue from "vue";
 import Vuex from "vuex";
 
@@ -8,6 +9,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     logList: new LogList(0, 0, []),
+    doramaList: new Array<Dorama>(),
   },
   mutations: {
     /**
@@ -26,10 +28,28 @@ export default new Vuex.Store({
      */
     overWrightLog(state, payload) {
       state.logList.logLists.splice(payload.log.id, 1, payload.log);
-      console.log(state.logList);
+    },
+
+    showDoramaList(state, payload) {
+      state.doramaList = new Array<Dorama>();
+      for (const dorama of payload.doramas) {
+        state.doramaList.push(
+          new Dorama(dorama.name, dorama.id, dorama.image, dorama.release)
+        );
+      }
     },
   },
-  actions: {},
+  actions: {
+    /**
+     * ドラマ一覧のWebAPIを取得する.
+     * @param context - コンテクスト
+     */
+    async asyncGetDoramaList(context) {
+      const response = await axios.get("http://localhost:3000/dorama");
+      const payload = response.data;
+      context.commit("showDoramaList", payload);
+    },
+  },
   getters: {
     /**
      * 記録作品の一覧を取得.

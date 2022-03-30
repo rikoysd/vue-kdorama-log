@@ -57,6 +57,9 @@ export default class XXXComponent extends Vue {
   // 検索ワード
   private serchWord = "";
 
+  async created(): Promise<void> {
+    await this.$store.dispatch("asyncGetDoramaList");
+  }
   /**
    * 「手動で入力」タブの表示
    */
