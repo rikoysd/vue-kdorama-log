@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div v-for="dorama of doramaList" v-bind:key="dorama.id">
+  <div class="items">
+    <div class="list" v-for="dorama of doramaList" v-bind:key="dorama.id">
       <div><img v-bind:src="dorama.image" /></div>
       <div>{{ dorama.name }}</div>
       <div>{{ dorama.release }}年</div>
@@ -54,6 +54,16 @@ export default class XXXComponent extends Vue {
 </script>
 
 <style scoped>
+.items {
+  display: flex;
+  /* 自動的に複数行になる */
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.list {
+  text-align: center;
+}
+
 img {
   width: 200px;
 }
