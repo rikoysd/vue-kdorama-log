@@ -1,7 +1,7 @@
 <template>
   <div class="items">
     <div class="list" v-for="dorama of doramaList" v-bind:key="dorama.id">
-      <div><img v-bind:src="dorama.image" /></div>
+      <div><router-link to="/doramaDetail"><img v-bind:src="dorama.image" /></router-link></div>
       <div>{{ dorama.name }}</div>
       <div>{{ dorama.release }}年</div>
     </div>
