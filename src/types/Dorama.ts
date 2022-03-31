@@ -1,11 +1,11 @@
 export class Dorama {
   constructor(
-    // 名前
-    private _name: string,
     // id
     private _id: number,
     // 画像
     private _image: string,
+    // 名前
+    private _name: string,
     // 公開年
     private _release: number
   ) {}
