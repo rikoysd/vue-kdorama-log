@@ -28,6 +28,11 @@ const routes: Array<RouteConfig> = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/DoramaList.vue"),
   },
+  {
+    path: "/doramaDetail",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/DoramaDetail.vue"),
+  },
 ];
 
 const router = new VueRouter({
