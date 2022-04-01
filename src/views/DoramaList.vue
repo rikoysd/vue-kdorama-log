@@ -1,7 +1,11 @@
 <template>
   <div class="items">
     <div class="list" v-for="dorama of doramaList" v-bind:key="dorama.id">
-      <div><router-link to="/doramaDetail"><img v-bind:src="dorama.image" /></router-link></div>
+      <div>
+        <router-link v-bind:to="'/doramaDetail/' + dorama.id"
+          ><img v-bind:src="dorama.image"
+        /></router-link>
+      </div>
       <div>{{ dorama.name }}</div>
       <div>{{ dorama.release }}年</div>
     </div>
@@ -48,7 +52,6 @@ export default class XXXComponent extends Vue {
         );
       }
     });
-    console.log(this.doramaList);
   }
 }
 </script>

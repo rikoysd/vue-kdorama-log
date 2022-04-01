@@ -6,7 +6,8 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    component: () => import(/* webpackChunkName: "about" */ "../views/Register.vue"),
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Register.vue"),
   },
   {
     path: "/logList",
@@ -29,7 +30,7 @@ const routes: Array<RouteConfig> = [
       import(/* webpackChunkName: "about" */ "../views/DoramaList.vue"),
   },
   {
-    path: "/doramaDetail",
+    path: "/doramaDetail/:id",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/DoramaDetail.vue"),
   },
