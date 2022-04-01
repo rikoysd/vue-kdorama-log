@@ -27,10 +27,4 @@ export default class App extends Vue {
 </script>
 
 <style>
-#app{
-  background-color: #F5C9C6;
-  /* width: 100%;
-  height: auto;
-  margin-left: calc(-50vw + 50%); */
-}
 </style>
