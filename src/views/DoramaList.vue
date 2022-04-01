@@ -6,7 +6,7 @@
           ><img v-bind:src="dorama.image"
         /></router-link>
       </div>
-      <div>{{ dorama.name }}</div>
+      <router-link v-bind:to="'/doramaDetail/' + dorama.id">{{ dorama.name }}</router-link>
       <div>{{ dorama.release }}年</div>
     </div>
   </div>
