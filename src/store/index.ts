@@ -1,4 +1,5 @@
 import { Dorama } from "@/types/Dorama";
+import { DoramaList } from "@/types/DoramaList";
 import { LogList } from "@/types/LogList";
 import axios from "axios";
 import Vue from "vue";
@@ -9,7 +10,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     logList: new LogList(0, 0, []),
-    doramaList: new Array<Dorama>(),
+    doramaList: new DoramaList(0, 0, []),
   },
   mutations: {
     /**
@@ -31,9 +32,9 @@ export default new Vuex.Store({
     },
 
     showDoramaList(state, payload) {
-      state.doramaList = new Array<Dorama>();
+      state.doramaList.doramaList = new Array<Dorama>();
       for (const dorama of payload.doramas) {
-        state.doramaList.push(
+        state.doramaList.doramaList.push(
           new Dorama(dorama.name, dorama.id, dorama.image, dorama.release)
         );
       }
