@@ -15,6 +15,9 @@
           <div>タイトル(必須)</div>
           <input type="text" v-model="title" />
         </div>
+        <div>
+          <Image></Image>
+        </div>
         <div class="error">{{ textError }}</div>
         <div class="item">
           <div>感想(必須)</div>
@@ -36,6 +39,7 @@
 <script lang="ts">
 import { Log } from "@/types/Log";
 import { Component, Vue } from "vue-property-decorator";
+import Image from "./Image.vue";
 @Component
 export default class XXXComponent extends Vue {
   // タイトル
