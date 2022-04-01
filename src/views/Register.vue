@@ -15,6 +15,10 @@
           <div>タイトル(必須)</div>
           <input type="text" v-model="title" />
         </div>
+        <div class="item">
+          <div>画像</div>
+          <image-comp></image-comp>
+        </div>
         <div class="error">{{ textError }}</div>
         <div class="item">
           <div>感想(必須)</div>
@@ -36,7 +40,12 @@
 <script lang="ts">
 import { Log } from "@/types/Log";
 import { Component, Vue } from "vue-property-decorator";
-@Component
+import ImageComp from "@/components/ImageComp.vue";
+@Component({
+  components: {
+    ImageComp,
+  },
+})
 export default class XXXComponent extends Vue {
   // タイトル
   private title = "";
@@ -57,9 +66,6 @@ export default class XXXComponent extends Vue {
   // 検索ワード
   private serchWord = "";
 
-  async created(): Promise<void> {
-    await this.$store.dispatch("asyncGetDoramaList");
-  }
   /**
    * 「手動で入力」タブの表示
    */
