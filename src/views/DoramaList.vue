@@ -6,7 +6,9 @@
           ><img v-bind:src="dorama.image"
         /></router-link>
       </div>
-      <router-link v-bind:to="'/doramaDetail/' + dorama.id">{{ dorama.name }}</router-link>
+      <router-link v-bind:to="'/doramaDetail/' + dorama.id">{{
+        dorama.name
+      }}</router-link>
       <div>{{ dorama.release }}年</div>
     </div>
   </div>
@@ -65,9 +67,15 @@ export default class XXXComponent extends Vue {
 }
 .list {
   text-align: center;
+  margin-left: 20px;
 }
 
 img {
   width: 200px;
+  height: 300px;
+  /* 各画像の高さを統一 */
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 </style>
