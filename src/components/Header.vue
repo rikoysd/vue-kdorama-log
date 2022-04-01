@@ -5,8 +5,7 @@
         <router-link to="/" class="menu">登録</router-link>
         <router-link to="/logList" class="menu">一覧</router-link>
         <!-- <router-link to="/login">ログイン</router-link> -->
-        <router-link to="/doramaList">ドラマ一覧</router-link> |
-        <router-link to="/image">画像のアップロード</router-link>
+        <router-link to="/doramaList">ドラマ一覧</router-link>
       </div>
     </header>
   </div>
