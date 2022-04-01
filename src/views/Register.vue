@@ -24,7 +24,15 @@
           <div>感想(必須)</div>
           <textarea cols="30" rows="10" v-model="text"></textarea>
         </div>
-        <button type="button" v-on:click="registerLog">登録する</button>
+        <button
+          class="btn waves-effect waves-light"
+          type="button"
+          name="action"
+          v-on:click="registerLog"
+        >
+          登録する
+          <i class="material-icons right">send</i>
+        </button>
       </div>
       <div v-show="searchLog">
         <div>作品を検索する</div>
