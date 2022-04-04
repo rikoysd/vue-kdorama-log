@@ -65,9 +65,11 @@ export default class XXXComponent extends Vue {
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .list {
   text-align: center;
   margin-left: 20px;
+  margin-bottom: 20px;
 }
 
 img {
@@ -77,5 +79,17 @@ img {
   object-fit: cover;
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+  /* ホバー時にふわっと浮き出る */
+  position: relative;
+  top: 0;
+  display: inline-block;
+  transition: all 0.3s;
+}
+
+img:hover {
+  opacity: 0.8;
+  top: -3px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
 }
 </style>

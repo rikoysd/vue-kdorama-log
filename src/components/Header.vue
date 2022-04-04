@@ -2,10 +2,12 @@
   <div>
     <header>
       <div class="navi">
-        <router-link to="/" class="menu">登録</router-link>
-        <router-link to="/logList" class="menu">一覧</router-link>
-        <!-- <router-link to="/login">ログイン</router-link> -->
-        <router-link to="/doramaList">ドラマ一覧</router-link>
+        <div>
+          <router-link to="/" class="menu">登録</router-link>
+          <router-link to="/logList" class="menu">一覧</router-link>
+          <!-- <router-link to="/login">ログイン</router-link> -->
+          <router-link to="/doramaList" class="menu">ドラマ一覧</router-link>
+        </div>
       </div>
     </header>
   </div>
@@ -21,6 +23,9 @@ export default class XXXComponent extends Vue {}
 .navi {
   text-align: center;
   padding: 20px;
+  height: 80px;
+  line-height: 60px;
+  margin-bottom: 10px;
 }
 
 .menu {
