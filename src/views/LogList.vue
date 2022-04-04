@@ -1,14 +1,20 @@
 <template>
   <div class="loglist">
     <div>{{ errorMessage }}</div>
-    <div v-show="canShow" class="item">
-      <div v-for="log of currentLogList" v-bind:key="log.id">
+    <div v-show="canShow">
+      <div class="item" v-for="log of currentLogList" v-bind:key="log.id">
         <div class="title">{{ log.title }}</div>
         <div class="button-list">
-          <router-link tag="button" class="button" v-bind:to="'/editLog/' + log.id"
+          <router-link
+            tag="button"
+            class="button"
+            v-bind:to="'/editLog/' + log.id"
             >編集する</router-link
           >
-          <router-link tag="button" class="button" v-bind:to="'/logDetail/' + log.id"
+          <router-link
+            tag="button"
+            class="button"
+            v-bind:to="'/logDetail/' + log.id"
             >詳細を見る</router-link
           >
         </div>
@@ -67,12 +73,13 @@ export default class XXXComponent extends Vue {
   padding: 10px;
   text-align: center;
   margin: 0 auto;
+  margin-bottom: 15px;
   background-color: white;
   border-radius: 5px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-.title{
+.title {
   margin-top: 3px;
 }
 
@@ -80,8 +87,8 @@ export default class XXXComponent extends Vue {
   margin-top: 10px;
 }
 
-.button{
-  width:100px;
+.button {
+  width: 100px;
   height: 25px;
   margin-left: 10px;
   background-color: #f48fb1;
