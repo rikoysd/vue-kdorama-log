@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <div><img :src="dorama.image" /></div>
+    <div><img v-bind:src="require(`@/assets/${dorama.image}`)" /></div>
     <div>
-      <div>{{ dorama.name }}({{ dorama.release }})</div>
+      <div class="title">{{ dorama.name }}({{ dorama.release }})</div>
       <div>★評価</div>
       <div>ウォッチリスト</div>
-      <div>あらすじ</div>
+      <div>あらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじ</div>
     </div>
   </div>
 </template>
@@ -37,7 +37,6 @@ export default class XXXComponent extends Vue {
     });
 
     this.dorama = this.doramaList.filter((dorama) => dorama.id == doramaId)[0];
-    console.log(this.dorama);
   }
 }
 </script>
@@ -45,5 +44,16 @@ export default class XXXComponent extends Vue {
 <style scoped>
 .container {
   display: flex;
+  width: 800px;
+}
+
+img {
+  width: 300px;
+  margin-right: 30px;
+}
+
+.title {
+  font-size: 30px;
+  margin-top: 40px;
 }
 </style>
