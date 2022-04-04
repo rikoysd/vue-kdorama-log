@@ -11,8 +11,12 @@
         <div>感想(必須)</div>
         <textarea cols="30" rows="10" v-model="text"></textarea>
       </div>
-      <button type="button" v-on:click="overWrightLog">上書きする</button>
-      <button type="button" v-on:click="backLogDetail">戻る</button>
+      <button type="button" class="button" v-on:click="overWrightLog">
+        上書きする
+      </button>
+      <button type="button" class="button" v-on:click="backLogDetail">
+        戻る
+      </button>
     </div>
   </div>
 </template>
@@ -103,6 +107,34 @@ export default class XXXComponent extends Vue {
 .edit-log {
   margin-top: 90px;
   text-align: center;
+  width: 650px;
+  height: auto;
+  padding: 50px;
+  margin-top: 50px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin: 0 auto;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin-top: 20px;
+}
+
+.button{
+  width:120px;
+  height: 35px;
+  margin-left: 10px;
+  background-color: #f48fb1;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  font-size: 13px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.8;
 }
 
 .tab {
