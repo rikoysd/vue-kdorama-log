@@ -51,10 +51,10 @@ export default class XXXComponent extends Vue {
       console.log(this.currentLogList);
     });
 
-    if (this.currentLogList.length === 0) {
-      this.canShow = false;
-      this.errorMessage = "鑑賞した作品がありません";
-    }
+    // if (this.currentLogList.length === 0) {
+    //   this.canShow = false;
+    //   this.errorMessage = "鑑賞した作品がありません";
+    // }
   }
 
   showDetail(): void {
