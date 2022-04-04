@@ -16,6 +16,10 @@
           <input type="text" v-model="title" />
         </div>
         <div class="item">
+          <div>鑑賞日</div>
+          <input type="date" v-model="watchDate" />
+        </div>
+        <div class="item">
           <div>画像</div>
           <image-comp></image-comp>
         </div>
@@ -46,9 +50,10 @@
 </template>
 
 <script lang="ts">
-import { Log } from "@/types/Log";
 import { Component, Vue } from "vue-property-decorator";
 import ImageComp from "@/components/ImageComp.vue";
+import { collection, doc, getDocs, setDoc } from "firebase/firestore";
+import db from "@/firebase";
 @Component({
   components: {
     ImageComp,
@@ -60,7 +65,7 @@ export default class XXXComponent extends Vue {
   // 感想
   private text = "";
   // 鑑賞日
-  // private watchDate = new Date();
+  private watchDate = "";
   // タイトルのエラー
   private titleError = "";
   // 感想のエラー
@@ -93,7 +98,7 @@ export default class XXXComponent extends Vue {
   /**
    * 鑑賞作品を登録する.
    */
-  registerLog(): void {
+  async registerLog(): Promise<void> {
     // エラー処理
     if (this.title === "") {
       this.titleError = "タイトルを入力してください";
@@ -110,14 +115,26 @@ export default class XXXComponent extends Vue {
     }
 
     // 成功の処理
-    let logList = this.$store.getters.showLogList;
-    let newId = 0;
-    if (logList.length >= 1) {
-      newId = logList[0].id + 1;
+    try {
+      // データを取り出す（コレクションごと）
+      const listData = collection(db, "ログ一覧");
+      let logId = 0;
+      await getDocs(listData).then((snapShot) => {
+        const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
+        // idを採番
+        logId = data.length + 1;
+      });
+      //データを追加する
+      const docRef = await setDoc(doc(db, "ログ一覧", this.title), {
+        id: logId,
+        title: this.title,
+        text: this.text,
+        date: this.watchDate,
+      });
+      console.log(docRef);
+    } catch (e) {
+      console.error("Error adding document: ", e);
     }
-    this.$store.commit("registerLog", {
-      log: new Log(newId, this.title, this.text),
-    });
     this.$router.push("/logList");
   }
 }
@@ -180,7 +197,7 @@ textarea {
   height: 40px;
 }
 
-.btn:hover{
+.btn:hover {
   opacity: 0.8;
 }
 

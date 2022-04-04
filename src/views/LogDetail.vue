@@ -12,17 +12,33 @@
 </template>
 
 <script lang="ts">
+import db from "@/firebase";
 import { Log } from "@/types/Log";
+import { collection, getDocs } from "firebase/firestore";
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
   // 表示されている作品
   private currentLog = new Log(0, "", "");
+  // ログ一覧
+  private currentLogList = Array<Log>();
 
-  created(): void {
+  async created(): Promise<void> {
     // idから詳細ページを表示させる
     const logId = Number(this.$route.params.id);
-    this.currentLog = this.$store.getters.getSearchLog(logId);
+    // データを取り出す（コレクションごと）
+    const listData = collection(db, "ログ一覧");
+    await getDocs(listData).then((snapShot) => {
+      const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
+      // console.log(data);
+      for (let i = 0; i < data.length; i++) {
+        this.currentLogList.push(
+          new Log(data[i].id, data[i].title, data[i].text)
+        );
+      }
+    });
+
+    this.currentLog = this.currentLogList.filter((log) => log.id == logId)[0];
   }
 
   /**

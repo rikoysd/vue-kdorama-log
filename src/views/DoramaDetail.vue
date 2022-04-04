@@ -1,11 +1,14 @@
 <template>
   <div class="container">
-    <div><img :src="dorama.image" /></div>
+    <div><img v-bind:src="require(`@/assets/${dorama.image}`)" /></div>
     <div>
-      <div>{{ dorama.name }}({{ dorama.release }})</div>
+      <div class="title">{{ dorama.name }}({{ dorama.release }})</div>
       <div>★評価</div>
-      <div>ウォッチリスト</div>
-      <div>あらすじ</div>
+      <div>
+        <button type="button" class="button">見たいリストに追加する</button>
+        <button type="button" class="button">見た</button>
+      </div>
+      <div class="story">{{ dorama.story }}</div>
     </div>
   </div>
 </template>
@@ -18,7 +21,7 @@ import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
   // 表示されているドラマ作品
-  private dorama = new Dorama(0, "", "", 0);
+  private dorama = new Dorama(0, "", "", 0, "");
   // ドラマリスト
   private doramaList = new Array<Dorama>();
 
@@ -31,13 +34,18 @@ export default class XXXComponent extends Vue {
       // console.log(data);
       for (let i = 0; i < data.length; i++) {
         this.doramaList.push(
-          new Dorama(data[i].id, data[i].image, data[i].name, data[i].release)
+          new Dorama(
+            data[i].id,
+            data[i].image,
+            data[i].name,
+            data[i].release,
+            data[i].story
+          )
         );
       }
     });
 
     this.dorama = this.doramaList.filter((dorama) => dorama.id == doramaId)[0];
-    console.log(this.dorama);
   }
 }
 </script>
@@ -45,5 +53,39 @@ export default class XXXComponent extends Vue {
 <style scoped>
 .container {
   display: flex;
+  width: 800px;
+}
+
+img {
+  width: 300px;
+  margin-right: 30px;
+}
+
+.title {
+  font-size: 30px;
+  margin-top: 40px;
+}
+
+.story {
+  margin-top: 25px;
+}
+
+.button {
+  width: 200px;
+  height: 40px;
+  margin-top: 10px;
+  margin-left: 10px;
+  background-color: #f48fb1;
+  border: none;
+  color: white;
+  font-size: 13px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.8;
 }
 </style>
