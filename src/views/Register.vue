@@ -46,7 +46,6 @@
 </template>
 
 <script lang="ts">
-import { Log } from "@/types/Log";
 import { Component, Vue } from "vue-property-decorator";
 import ImageComp from "@/components/ImageComp.vue";
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";

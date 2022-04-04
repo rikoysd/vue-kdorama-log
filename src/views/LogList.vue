@@ -21,7 +21,9 @@
 </template>
 
 <script lang="ts">
+import db from "@/firebase";
 import { Log } from "@/types/Log";
+import { collection, getDocs } from "firebase/firestore";
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
@@ -34,8 +36,20 @@ export default class XXXComponent extends Vue {
   // 感想を表示・非表示
   private showText = false;
 
-  created(): void {
-    this.currentLogList = this.$store.getters.showLogList;
+  async created(): Promise<void> {
+    // データを取り出す（コレクションごと）
+    const listData = collection(db, "ログ一覧");
+    getDocs(listData).then((snapShot) => {
+      const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
+      // console.log(data);
+
+      for (let i = 0; i < data.length; i++) {
+        this.currentLogList.push(
+          new Log(data[i].id, data[i].title, data[i].text)
+        );
+      }
+      console.log(this.currentLogList);
+    });
 
     if (this.currentLogList.length === 0) {
       this.canShow = false;
