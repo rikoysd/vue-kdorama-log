@@ -50,7 +50,7 @@ export default class XXXComponent extends Vue {
 
       for (let i = 0; i < data.length; i++) {
         this.doramaList.push(
-          new Dorama(data[i].id, data[i].image, data[i].name, data[i].release)
+          new Dorama(data[i].id, data[i].image, data[i].name, data[i].release,data[i].story)
         );
       }
     });

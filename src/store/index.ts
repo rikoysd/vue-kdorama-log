@@ -35,7 +35,7 @@ export default new Vuex.Store({
       state.doramaList.doramaList = new Array<Dorama>();
       for (const dorama of payload.doramas) {
         state.doramaList.doramaList.push(
-          new Dorama(dorama.name, dorama.id, dorama.image, dorama.release)
+          new Dorama(dorama.name, dorama.id, dorama.image, dorama.release,dorama.story)
         );
       }
     },

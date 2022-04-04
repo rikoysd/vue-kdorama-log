@@ -7,7 +7,9 @@ export class Dorama {
     // 名前
     private _name: string,
     // 公開年
-    private _release: number
+    private _release: number,
+    // あらすじ
+    private _story: string
   ) {}
 
   public get name(): string {
@@ -40,5 +42,13 @@ export class Dorama {
 
   public set release(release: number) {
     this._release = release;
+  }
+
+  public get story(): string {
+    return this._story;
+  }
+
+  public set story(story: string) {
+    this._story = story;
   }
 }
