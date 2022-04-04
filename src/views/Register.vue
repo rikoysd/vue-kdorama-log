@@ -16,6 +16,10 @@
           <input type="text" v-model="title" />
         </div>
         <div class="item">
+          <div>鑑賞日</div>
+          <input type="date" v-model="watchDate" />
+        </div>
+        <div class="item">
           <div>画像</div>
           <image-comp></image-comp>
         </div>
@@ -61,7 +65,7 @@ export default class XXXComponent extends Vue {
   // 感想
   private text = "";
   // 鑑賞日
-  // private watchDate = new Date();
+  private watchDate = "";
   // タイトルのエラー
   private titleError = "";
   // 感想のエラー
@@ -125,6 +129,7 @@ export default class XXXComponent extends Vue {
         id: logId,
         title: this.title,
         text: this.text,
+        date: this.watchDate,
       });
       console.log(docRef);
     } catch (e) {
