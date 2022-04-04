@@ -20,7 +20,7 @@
 <script lang="ts">
 import db from "@/firebase";
 import { Log } from "@/types/Log";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
@@ -53,7 +53,7 @@ export default class XXXComponent extends Vue {
         this.logList.push(new Log(data[i].id, data[i].title, data[i].text));
       }
     });
-    this.currentLog= this.logList.filter((log) => log.id === logId)[0];
+    this.currentLog = this.logList.filter((log) => log.id === logId)[0];
     console.log(this.currentLog);
     this.title = this.currentLog.title;
     this.text = this.currentLog.text;
@@ -62,7 +62,7 @@ export default class XXXComponent extends Vue {
   /**
    * 鑑賞作品を更新する.
    */
-  overWrightLog(): void {
+  async overWrightLog(): Promise<void> {
     // エラー処理
     if (this.title === "") {
       this.titleError = "タイトルを入力してください";
@@ -80,10 +80,13 @@ export default class XXXComponent extends Vue {
 
     // 成功の処理
     const logId = Number(this.$route.params.id);
-    this.$store.commit("overWrightLog", {
-      log: new Log(logId, this.title, this.text),
+    //データを更新する
+    const docRef = await setDoc(doc(db, "ログ一覧", this.title), {
+      id: logId,
+      title: this.title,
+      text: this.text,
     });
-
+    console.log(docRef);
     this.$router.push("/logDetail/" + this.currentLog.id);
   }
 
