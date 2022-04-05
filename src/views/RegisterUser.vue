@@ -166,7 +166,32 @@ export default class XXXComponent extends Vue {
     }
     this.$router.push("/logList");
   }
+
+  /**
+   * フォームに入力された内容をリセットする.
+   */
+  reset(): void {
+    this.name = "";
+    this.mailAddress = "";
+    this.passwordConfirmation = "";
+    this.errorMessage = "";
+    this.errorMailAddress = "";
+    this.errorPassword = "";
+    this.errorPasswordConfirmation = "";
+  }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.top-wrapper{
+  width: 700px;
+  height: auto;
+  padding: 20px;
+  margin-top: 50px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin: 0 auto;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin-top: 20px;
+}
+</style>
