@@ -3,7 +3,7 @@
     <div class="list" v-for="dorama of doramaList" v-bind:key="dorama.id">
       <div>
         <router-link v-bind:to="'/doramaDetail/' + dorama.id"
-          ><img v-bind:src="dorama.image"
+          ><img v-bind:src="require(`@/assets/${dorama.image}`)"
         /></router-link>
       </div>
       <router-link v-bind:to="'/doramaDetail/' + dorama.id">{{
@@ -50,7 +50,13 @@ export default class XXXComponent extends Vue {
 
       for (let i = 0; i < data.length; i++) {
         this.doramaList.push(
-          new Dorama(data[i].id, data[i].image, data[i].name, data[i].release,data[i].story)
+          new Dorama(
+            data[i].id,
+            data[i].image,
+            data[i].name,
+            data[i].release,
+            data[i].story
+          )
         );
       }
     });

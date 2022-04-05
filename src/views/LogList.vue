@@ -17,6 +17,9 @@
             v-bind:to="'/logDetail/' + log.id"
             >詳細を見る</router-link
           >
+          <button type="button" class="button btn-color">
+            削除する
+          </button>
         </div>
       </div>
     </div>
@@ -26,7 +29,7 @@
 <script lang="ts">
 import db from "@/firebase";
 import { Log } from "@/types/Log";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
@@ -57,6 +60,14 @@ export default class XXXComponent extends Vue {
     //   this.canShow = false;
     //   this.errorMessage = "鑑賞した作品がありません";
     // }
+  }
+
+  /**
+   * ログを削除する.
+   */
+  deleteLog(): void {
+  //データを削除する
+    deleteDoc(doc(db, "ログ一覧", "testDoc1"));
   }
 }
 </script>
@@ -104,5 +115,9 @@ export default class XXXComponent extends Vue {
 
 .button:hover {
   opacity: 0.8;
+}
+
+.btn-color {
+  background-color: rgb(173, 173, 173);
 }
 </style>

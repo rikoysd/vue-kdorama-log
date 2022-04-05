@@ -5,7 +5,7 @@
       <div class="title">{{ dorama.name }}({{ dorama.release }})</div>
       <div>★評価</div>
       <div>
-        <button type="button" class="button">見たいリストに追加する</button>
+        <button type="button" class="button" v-on:click="addList">見たいリストに追加する</button>
         <button type="button" class="button">見た</button>
       </div>
       <div class="story">{{ dorama.story }}</div>
@@ -47,6 +47,10 @@ export default class XXXComponent extends Vue {
 
     this.dorama = this.doramaList.filter((dorama) => dorama.id == doramaId)[0];
   }
+
+  // addList():void{
+
+  // }
 }
 </script>
 
