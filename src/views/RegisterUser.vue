@@ -6,27 +6,16 @@
           <div class="row register-page">
             <div class="error">{{ errorMessage }}</div>
             <div class="row">
-              <div class="error">{{ errorLastName }}</div>
-              <div class="error">{{ errorFirstName }}</div>
-              <div class="input-field col s6">
+              <div class="error">{{ errorName }}</div>
+              <div class="input-field col s12">
                 <input
-                  id="last_name"
+                  id="name"
                   type="text"
                   class="validate"
-                  v-model="lastName"
+                  v-model="name"
                   required
                 />
-                <label for="last_name">姓</label>
-              </div>
-              <div class="input-field col s6">
-                <input
-                  id="first_name"
-                  type="text"
-                  class="validate"
-                  v-model="firstName"
-                  required
-                />
-                <label for="first_name">名</label>
+                <label for="name">名前</label>
               </div>
             </div>
             <div class="row">
@@ -40,35 +29,6 @@
                   required
                 />
                 <label for="email">メールアドレス</label>
-              </div>
-            </div>
-            <div class="error">{{ errorZipCode }}</div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input
-                  id="zipcode"
-                  type="text"
-                  maxlength="8"
-                  v-model="zipCode"
-                />
-                <label for="zipcode">郵便番号</label>
-                <button class="btn" type="button" v-on:click="getAddress">
-                  <span>住所検索</span>
-                </button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="error">{{ errorAddress }}</div>
-              <div class="input-field col s12">
-                <input id="address" type="text" v-model="address" />
-                <label for="address">住所</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="error">{{ errorTelephone }}</div>
-              <div class="input-field col s12">
-                <input id="tel" type="tel" maxlength="14" v-model="telephone" />
-                <label for="tel">電話番号</label>
               </div>
             </div>
             <div class="row">
@@ -115,9 +75,98 @@
 </template>
 
 <script lang="ts">
+import db from "@/firebase";
+import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { Component, Vue } from "vue-property-decorator";
 @Component
-export default class XXXComponent extends Vue {}
+export default class XXXComponent extends Vue {
+  // 名前
+  private name = "";
+  // メールアドレス
+  private mailAddress = "";
+  // パスワード
+  private password = "";
+  // 確認用パスワード
+  private passwordConfirmation = "";
+  // エラーメッセージ
+  private errorMessage = "";
+  // 名前のエラーメッセージ
+  private errorName = "";
+  // メールアドレスのエラーメッセージ
+  private errorMailAddress = "";
+  // パスワードのエラーメッセージ
+  private errorPassword = "";
+  // 確認用パスワードのエラーメッセージ
+  private errorPasswordConfirmation = "";
+  // フォームチェッカー
+  private errorChecker = true;
+
+  /**
+   * ユーザー情報を登録する.
+   */
+  async registerUser(): Promise<void> {
+    // エラー処理
+    if (this.name === "") {
+      this.errorName = "名前が入力されていません";
+      this.errorChecker = false;
+    }
+    if (this.mailAddress === "") {
+      this.errorMailAddress = "メールアドレスが入力されていません";
+      this.errorChecker = false;
+    }
+    if (!this.mailAddress.indexOf("@")) {
+      this.errorMailAddress = "メールアドレスの形式が不正です";
+      this.errorChecker = false;
+    }
+
+    if (this.password === "") {
+      this.errorPassword = "パスワードが入力されていません";
+      this.errorChecker = false;
+    }
+    if (
+      (this.password !== "" && this.password.length < 8) ||
+      16 < this.password.length
+    ) {
+      this.errorPassword =
+        "パスワードは８文字以上１６文字以内で設定してください";
+      this.errorChecker = false;
+    }
+    if (this.passwordConfirmation === "") {
+      this.errorPasswordConfirmation = "確認用パスワードが入力されていません";
+      this.errorChecker = false;
+    }
+    if (this.password != this.passwordConfirmation) {
+      this.errorPassword = "パスワードと確認用パスワードが不一致です";
+    }
+
+    if (this.errorChecker === false) {
+      return;
+    }
+
+    // 成功の処理
+    try {
+      // データを取り出す（コレクションごと）
+      const listData = collection(db, "ユーザー一覧");
+      let userId = 0;
+      await getDocs(listData).then((snapShot) => {
+        const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
+        // idを採番
+        userId = data.length + 1;
+      });
+      //データを追加する
+      const docRef = await setDoc(doc(db, "ユーザー一覧", this.name), {
+        id: userId,
+        name: this.name,
+        mail: this.mailAddress,
+        password: this.password,
+      });
+      console.log(docRef);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+    this.$router.push("/logList");
+  }
+}
 </script>
 
 <style scoped></style>
