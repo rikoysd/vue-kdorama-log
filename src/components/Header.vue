@@ -9,6 +9,7 @@
           <router-link to="/doramaList" class="menu">ドラマ一覧</router-link>
           <router-link to="/watchList" class="menu">ウォッチリスト</router-link>
           <router-link to="/login" class="menu">ログイン</router-link>
+          <router-link to="/registerUser" class="menu">新規登録</router-link>
         </div>
       </div>
     </header>
