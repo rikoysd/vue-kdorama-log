@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="U6OTuZXPzPGThkRXyPSG" name="1. 登録する">
-        <mxGraphModel dx="894" dy="510" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+        <mxGraphModel dx="188" dy="510" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -20,33 +20,86 @@
         </mxGraphModel>
     </diagram>
     <diagram id="WEETKGK4OsdBMUEUH55A" name="作品詳細ページ">
-        <mxGraphModel dx="1788" dy="1020" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+        <mxGraphModel dx="1585" dy="1275" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
             <root>
                 <mxCell id="_SBBwEk8TdW2Yuldmu69-0"/>
                 <mxCell id="_SBBwEk8TdW2Yuldmu69-1" parent="_SBBwEk8TdW2Yuldmu69-0"/>
-                <mxCell id="_SBBwEk8TdW2Yuldmu69-2" value="&lt;font style=&quot;font-size: 36px&quot;&gt;作品画像&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="_SBBwEk8TdW2Yuldmu69-1">
+                <mxCell id="_SBBwEk8TdW2Yuldmu69-2" value="&lt;font style=&quot;font-size: 36px&quot;&gt;作品画像&lt;/font&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="_SBBwEk8TdW2Yuldmu69-1" vertex="1">
                     <mxGeometry x="110" y="110" width="490" height="490" as="geometry"/>
                 </mxCell>
-                <mxCell id="_SBBwEk8TdW2Yuldmu69-3" value="作品のタイトル" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=36;" vertex="1" parent="_SBBwEk8TdW2Yuldmu69-1">
+                <mxCell id="_SBBwEk8TdW2Yuldmu69-3" value="作品のタイトル" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=36;" parent="_SBBwEk8TdW2Yuldmu69-1" vertex="1">
                     <mxGeometry x="680" y="160" width="270" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="_SBBwEk8TdW2Yuldmu69-4" value="あらすじ" style="whiteSpace=wrap;html=1;fontSize=36;" vertex="1" parent="_SBBwEk8TdW2Yuldmu69-1">
+                <mxCell id="_SBBwEk8TdW2Yuldmu69-4" value="あらすじ" style="whiteSpace=wrap;html=1;fontSize=36;" parent="_SBBwEk8TdW2Yuldmu69-1" vertex="1">
                     <mxGeometry x="670" y="360" width="440" height="240" as="geometry"/>
                 </mxCell>
-                <mxCell id="_SBBwEk8TdW2Yuldmu69-5" value="&lt;font style=&quot;font-size: 24px&quot;&gt;ウォッチリスト〇人&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=36;" vertex="1" parent="_SBBwEk8TdW2Yuldmu69-1">
+                <mxCell id="_SBBwEk8TdW2Yuldmu69-5" value="&lt;font style=&quot;font-size: 24px&quot;&gt;ウォッチリスト〇人&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=36;" parent="_SBBwEk8TdW2Yuldmu69-1" vertex="1">
                     <mxGeometry x="680" y="220" width="230" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="_SBBwEk8TdW2Yuldmu69-6" value="★評価" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=24;" vertex="1" parent="_SBBwEk8TdW2Yuldmu69-1">
+                <mxCell id="_SBBwEk8TdW2Yuldmu69-6" value="★評価" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=24;" parent="_SBBwEk8TdW2Yuldmu69-1" vertex="1">
                     <mxGeometry x="680" y="290" width="90" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="_SBBwEk8TdW2Yuldmu69-7" value="この作品の感想を&lt;br&gt;登録する" style="whiteSpace=wrap;html=1;fontSize=24;" vertex="1" parent="_SBBwEk8TdW2Yuldmu69-1">
+                <mxCell id="_SBBwEk8TdW2Yuldmu69-7" value="この作品の感想を&lt;br&gt;登録する" style="whiteSpace=wrap;html=1;fontSize=24;" parent="_SBBwEk8TdW2Yuldmu69-1" vertex="1">
                     <mxGeometry x="270" y="680" width="290" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="_SBBwEk8TdW2Yuldmu69-8" value="公開レビューを投稿する" style="whiteSpace=wrap;html=1;fontSize=24;" vertex="1" parent="_SBBwEk8TdW2Yuldmu69-1">
+                <mxCell id="_SBBwEk8TdW2Yuldmu69-8" value="公開レビューを投稿する" style="whiteSpace=wrap;html=1;fontSize=24;" parent="_SBBwEk8TdW2Yuldmu69-1" vertex="1">
                     <mxGeometry x="640" y="680" width="290" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="_SBBwEk8TdW2Yuldmu69-9" value="作品一覧に戻る" style="whiteSpace=wrap;html=1;fontSize=24;" vertex="1" parent="_SBBwEk8TdW2Yuldmu69-1">
+                <mxCell id="_SBBwEk8TdW2Yuldmu69-9" value="作品一覧に戻る" style="whiteSpace=wrap;html=1;fontSize=24;" parent="_SBBwEk8TdW2Yuldmu69-1" vertex="1">
                     <mxGeometry x="460" y="790" width="290" height="70" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="jb7nDvGdD32Xa-2V0AgQ" name="マイページ">
+        <mxGraphModel dx="188" dy="510" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+            <root>
+                <mxCell id="WceGVVTmLxHheQZdKp2J-0"/>
+                <mxCell id="WceGVVTmLxHheQZdKp2J-1" parent="WceGVVTmLxHheQZdKp2J-0"/>
+                <mxCell id="WceGVVTmLxHheQZdKp2J-2" value="" style="ellipse;whiteSpace=wrap;html=1;" parent="WceGVVTmLxHheQZdKp2J-1" vertex="1">
+                    <mxGeometry x="360" y="80" width="190" height="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="WceGVVTmLxHheQZdKp2J-3" value="&lt;font style=&quot;font-size: 18px&quot;&gt;画像を変更する&lt;/font&gt;" style="whiteSpace=wrap;html=1;" parent="WceGVVTmLxHheQZdKp2J-1" vertex="1">
+                    <mxGeometry x="360" y="300" width="190" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="WceGVVTmLxHheQZdKp2J-4" value="" style="whiteSpace=wrap;html=1;fontSize=18;" parent="WceGVVTmLxHheQZdKp2J-1" vertex="1">
+                    <mxGeometry x="200" y="460" width="370" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="WceGVVTmLxHheQZdKp2J-6" value="" style="ellipse;whiteSpace=wrap;html=1;" parent="WceGVVTmLxHheQZdKp2J-1" vertex="1">
+                    <mxGeometry x="250" y="495" width="70" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="WceGVVTmLxHheQZdKp2J-7" value="作品を登録する" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;" parent="WceGVVTmLxHheQZdKp2J-1" vertex="1">
+                    <mxGeometry x="370" y="515" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="WceGVVTmLxHheQZdKp2J-11" value="" style="whiteSpace=wrap;html=1;fontSize=18;" parent="WceGVVTmLxHheQZdKp2J-1" vertex="1">
+                    <mxGeometry x="670" y="460" width="370" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="WceGVVTmLxHheQZdKp2J-12" value="" style="ellipse;whiteSpace=wrap;html=1;" parent="WceGVVTmLxHheQZdKp2J-1" vertex="1">
+                    <mxGeometry x="720" y="495" width="70" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="WceGVVTmLxHheQZdKp2J-13" value="気になるドラマを&lt;br&gt;検索する" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;" parent="WceGVVTmLxHheQZdKp2J-1" vertex="1">
+                    <mxGeometry x="830" y="505" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="WceGVVTmLxHheQZdKp2J-14" value="" style="whiteSpace=wrap;html=1;fontSize=18;" parent="WceGVVTmLxHheQZdKp2J-1" vertex="1">
+                    <mxGeometry x="200" y="650" width="370" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="WceGVVTmLxHheQZdKp2J-15" value="" style="ellipse;whiteSpace=wrap;html=1;" parent="WceGVVTmLxHheQZdKp2J-1" vertex="1">
+                    <mxGeometry x="250" y="685" width="70" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="WceGVVTmLxHheQZdKp2J-16" value="マイウォッチリスト" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;" parent="WceGVVTmLxHheQZdKp2J-1" vertex="1">
+                    <mxGeometry x="350" y="705" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="WceGVVTmLxHheQZdKp2J-17" value="" style="whiteSpace=wrap;html=1;fontSize=18;" parent="WceGVVTmLxHheQZdKp2J-1" vertex="1">
+                    <mxGeometry x="670" y="650" width="370" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="WceGVVTmLxHheQZdKp2J-18" value="" style="ellipse;whiteSpace=wrap;html=1;" parent="WceGVVTmLxHheQZdKp2J-1" vertex="1">
+                    <mxGeometry x="720" y="685" width="70" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="WceGVVTmLxHheQZdKp2J-19" value="会員情報の変更" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;" parent="WceGVVTmLxHheQZdKp2J-1" vertex="1">
+                    <mxGeometry x="840" y="705" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="WceGVVTmLxHheQZdKp2J-20" value="&lt;font style=&quot;font-size: 24px&quot;&gt;名前&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;" parent="WceGVVTmLxHheQZdKp2J-1" vertex="1">
+                    <mxGeometry x="600" y="115" width="60" height="30" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
