@@ -100,6 +100,8 @@ export default class XXXComponent extends Vue {
   private errorPasswordConfirmation = "";
   // フォームチェッカー
   private errorChecker = true;
+  // 送信チェック
+  private submitChecker = true;
 
   /**
    * ユーザー情報を登録する.
@@ -152,7 +154,22 @@ export default class XXXComponent extends Vue {
         const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
         // idを採番
         userId = data.length + 1;
+        // メールアドレスで同じものがあれば、エラー文を出す
+        for (let i = 0; i < data.length; i++) {
+          if (this.mailAddress === data[i].mail) {
+            this.errorMessage = "既にそのメールアドレスは登録されています";
+            this.submitChecker = false;
+          } else {
+            this.errorMessage = "";
+            this.submitChecker = true;
+          }
+        }
       });
+
+      if (this.submitChecker === false) {
+        return;
+      }
+
       //データを追加する
       const docRef = await setDoc(doc(db, "ユーザー一覧", this.name), {
         id: userId,
@@ -183,7 +200,7 @@ export default class XXXComponent extends Vue {
 </script>
 
 <style scoped>
-.top-wrapper{
+.top-wrapper {
   width: 700px;
   height: auto;
   padding: 20px;
