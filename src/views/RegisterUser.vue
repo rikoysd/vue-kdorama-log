@@ -181,7 +181,7 @@ export default class XXXComponent extends Vue {
     } catch (e) {
       console.error("Error adding document: ", e);
     }
-    this.$router.push("/logList");
+    this.$router.push("/login");
   }
 
   /**
@@ -190,6 +190,7 @@ export default class XXXComponent extends Vue {
   reset(): void {
     this.name = "";
     this.mailAddress = "";
+    this.password = "";
     this.passwordConfirmation = "";
     this.errorMessage = "";
     this.errorMailAddress = "";
