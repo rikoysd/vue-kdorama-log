@@ -5,7 +5,9 @@
       <div class="title">{{ dorama.name }}({{ dorama.release }})</div>
       <div>★評価</div>
       <div>
-        <button type="button" class="button" v-on:click="addList">見たいリストに追加する</button>
+        <button type="button" class="button" v-on:click="addList">
+          見たいリストに追加する
+        </button>
         <button type="button" class="button">見た</button>
       </div>
       <div class="story">{{ dorama.story }}</div>
@@ -24,6 +26,8 @@ export default class XXXComponent extends Vue {
   private dorama = new Dorama(0, "", "", 0, "");
   // ドラマリスト
   private doramaList = new Array<Dorama>();
+  // ログイン状況
+  private currentIsLogin = true;
 
   async created(): Promise<void> {
     const doramaId = Number(this.$route.params.id);
@@ -49,7 +53,12 @@ export default class XXXComponent extends Vue {
   }
 
   // addList():void{
-
+  //   this.currentIsLogin=this.$store.getters.isLogin;
+  //   if(this.currentIsLogin===false){
+  //     this.$router.push("/login");
+  //   } else{
+      
+  //   }
   // }
 }
 </script>
