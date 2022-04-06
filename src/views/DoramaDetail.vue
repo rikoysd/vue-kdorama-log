@@ -52,14 +52,12 @@ export default class XXXComponent extends Vue {
     this.dorama = this.doramaList.filter((dorama) => dorama.id == doramaId)[0];
   }
 
-  // addList():void{
-  //   this.currentIsLogin=this.$store.getters.isLogin;
-  //   if(this.currentIsLogin===false){
-  //     this.$router.push("/login");
-  //   } else{
-      
-  //   }
-  // }
+  addList(): void {
+    this.currentIsLogin = this.$store.getters.isLogin;
+    if (this.currentIsLogin === false) {
+      this.$router.push("/login");
+    }
+  }
 }
 </script>
 
