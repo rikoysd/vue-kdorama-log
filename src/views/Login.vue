@@ -67,7 +67,7 @@ export default class XXXComponent extends Vue {
   // パスワード
   private password = "";
   // ユーザー
-  private user = new User(0, "", "", "");
+  private user = new User(0, "", "", "", []);
   //ユーザーリスト
   private userList = new Array<User>();
 
@@ -82,7 +82,13 @@ export default class XXXComponent extends Vue {
 
         for (let i = 0; i < data.length; i++) {
           this.userList.push(
-            new User(data[i].id, data[i].name, data[i].mail, data[i].password)
+            new User(
+              data[i].id,
+              data[i].name,
+              data[i].mail,
+              data[i].password,
+              data[i].watchList
+            )
           );
         }
       });
@@ -112,6 +118,7 @@ export default class XXXComponent extends Vue {
         this.errorMessage = "パスワードが間違っています";
         return;
       }
+      this.errorMessage = "";
 
       //データを追加する
       await setDoc(doc(db, "ログインユーザー", this.user.name), {

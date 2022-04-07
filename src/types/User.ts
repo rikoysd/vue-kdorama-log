@@ -11,7 +11,7 @@ export class User {
     // パスワード
     private _password: string,
     // ウォッチリスト
-    // private _watchList: Array<Dorama>
+    private _watchList: Array<Dorama>
   ) {}
 
   public get id(): number {
@@ -46,11 +46,11 @@ export class User {
     this._password = password;
   }
 
-  // public get watchList(): Array<Dorama> {
-  //   return this._watchList;
-  // }
+  public get watchList(): Array<Dorama> {
+    return this._watchList;
+  }
 
-  // public set watchList(watchList: Array<Dorama>) {
-  //   this._watchList = watchList;
-  // }
+  public set watchList(watchList: Array<Dorama>) {
+    this._watchList = watchList;
+  }
 }
