@@ -5,7 +5,12 @@
       <div class="title">{{ dorama.name }}({{ dorama.release }})</div>
       <div>★評価</div>
       <div>
-        <button type="button" class="button" v-on:click="addList">
+        <button
+          type="button"
+          class="button"
+          v-on:click="addList"
+          v-bind:disabled="canClick"
+        >
           {{ addMessage }}
         </button>
         <button type="button" class="button">見た</button>
