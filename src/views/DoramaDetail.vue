@@ -5,7 +5,14 @@
       <div class="title">{{ dorama.name }}({{ dorama.release }})</div>
       <div>★評価</div>
       <div>
-        <button type="button" class="button" v-on:click="addList">見たいリストに追加する</button>
+        <button
+          type="button"
+          class="button"
+          v-on:click="addList"
+          v-bind:disabled="canClick"
+        >
+          {{ addMessage }}
+        </button>
         <button type="button" class="button">見た</button>
       </div>
       <div class="story">{{ dorama.story }}</div>
@@ -16,7 +23,8 @@
 <script lang="ts">
 import db from "@/firebase";
 import { Dorama } from "@/types/Dorama";
-import { collection, getDocs } from "firebase/firestore";
+import { User } from "@/types/User";
+import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
@@ -24,6 +32,12 @@ export default class XXXComponent extends Vue {
   private dorama = new Dorama(0, "", "", 0, "");
   // ドラマリスト
   private doramaList = new Array<Dorama>();
+  // ログイン状況
+  private currentIsLogin = true;
+  // 現在のログイン中のユーザー
+  private currentUser = new User(0, "", "", "", []);
+  // ウォッチリスト追加のメッセージ
+  private addMessage = "見たいリストに追加する";
 
   async created(): Promise<void> {
     const doramaId = Number(this.$route.params.id);
@@ -48,9 +62,42 @@ export default class XXXComponent extends Vue {
     this.dorama = this.doramaList.filter((dorama) => dorama.id == doramaId)[0];
   }
 
-  // addList():void{
+  async addList(): Promise<void> {
+    // データを取り出す（コレクションごと）
+    const listData = collection(db, "ログインユーザー");
+    await getDocs(listData).then((snapShot) => {
+      const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
 
-  // }
+      if (data.length === 0) {
+        this.$router.push("/login");
+        return;
+      }
+
+      this.currentUser = new User(
+        data[0].id,
+        data[0].name,
+        data[0].mail,
+        data[0].password,
+        data[0].watchList
+      );
+    });
+
+    const { id, image, name, release, story } = this.dorama;
+
+    try {
+      // ドキュメントを更新する
+      await setDoc(doc(db, this.currentUser.name + "のウォッチリスト", name), {
+        id: id,
+        image: image,
+        name: name,
+        release: release,
+        story: story,
+      });
+      this.addMessage = "リストに追加されました";
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  }
 }
 </script>
 

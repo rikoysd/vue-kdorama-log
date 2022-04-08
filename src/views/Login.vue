@@ -54,6 +54,9 @@
 </template>
 
 <script lang="ts">
+import db from "@/firebase";
+import { User } from "@/types/User";
+import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
@@ -63,6 +66,74 @@ export default class XXXComponent extends Vue {
   private email = "";
   // パスワード
   private password = "";
+  // ユーザー
+  private user = new User(0, "", "", "", []);
+  //ユーザーリスト
+  private userList = new Array<User>();
+
+  async loginUser(): Promise<void> {
+    // 成功の処理
+    try {
+      // データを取り出す（コレクションごと）
+      const listData = collection(db, "ユーザー一覧");
+      await getDocs(listData).then((snapShot) => {
+        const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
+        console.log(data);
+
+        for (let i = 0; i < data.length; i++) {
+          this.userList.push(
+            new User(
+              data[i].id,
+              data[i].name,
+              data[i].mail,
+              data[i].password,
+              data[i].watchList
+            )
+          );
+        }
+      });
+
+      console.log(this.userList);
+
+      // エラー
+      if (this.email === "" || this.password === "") {
+        this.errorMessage =
+          "メールアドレスまたはパスワードが入力されていません";
+        return;
+      }
+      this.errorMessage = "";
+
+      for (let i = 0; i < this.userList.length; i++) {
+        if (this.email !== this.userList[i].mail) {
+          this.errorMessage = "メールアドレスが間違っています";
+        } else {
+          this.user = this.userList[i];
+          this.errorMessage = "";
+        }
+      }
+
+      // console.log(this.user);
+
+      if (this.password !== this.user.password) {
+        this.errorMessage = "パスワードが間違っています";
+        return;
+      }
+      this.errorMessage = "";
+
+      //データを追加する
+      await setDoc(doc(db, "ログインユーザー", this.user.name), {
+        id: this.user.id,
+        name: this.user.name,
+        mail: this.email,
+        password: this.password,
+      });
+      // ログイン状況をオンにする
+      this.$store.commit("loginUser");
+      this.$router.push("/myPage");
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  }
 }
 </script>
 
