@@ -1,21 +1,28 @@
 <template>
-  <div class="container">
-    <div><img v-bind:src="require(`@/assets/${dorama.image}`)" /></div>
-    <div>
-      <div class="title">{{ dorama.name }}({{ dorama.release }})</div>
-      <div>★評価</div>
+  <div>
+    <div class="container">
+      <div><img v-bind:src="require(`@/assets/${dorama.image}`)" /></div>
       <div>
-        <button
-          type="button"
-          class="button"
-          v-on:click="addList"
-          v-bind:disabled="canClick"
-        >
-          {{ addMessage }}
-        </button>
-        <button type="button" class="button">見た</button>
+        <div class="title">{{ dorama.name }}({{ dorama.release }})</div>
+        <div>★評価</div>
+        <div>
+          <button
+            type="button"
+            class="button"
+            v-on:click="addList"
+            v-bind:disabled="canClick"
+          >
+            {{ addMessage }}
+          </button>
+          <button type="button" class="button">見た</button>
+        </div>
+        <div class="story">{{ dorama.story }}</div>
       </div>
-      <div class="story">{{ dorama.story }}</div>
+    </div>
+    <div class="position">
+      <button class="button" type="button" v-on:click="backToDoramaList">
+        一覧に戻る
+      </button>
     </div>
   </div>
 </template>
@@ -98,6 +105,13 @@ export default class XXXComponent extends Vue {
       console.error("Error adding document: ", e);
     }
   }
+
+  /**
+   * ドラマ一覧に戻る.
+   */
+  backToDoramaList(): void {
+    this.$router.push("/doramaList");
+  }
 }
 </script>
 
@@ -138,5 +152,10 @@ img {
 
 .button:hover {
   opacity: 0.8;
+}
+
+.position {
+  text-align: center;
+  margin-top: 30px;
 }
 </style>
