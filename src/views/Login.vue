@@ -32,7 +32,7 @@
                 </div>
               </div>
               <div class="row login-btn">
-                <button class="btn" type="button" v-on:click="loginUser">
+                <button class="btn margin" type="button" v-on:click="loginUser">
                   <span>ログイン</span>
                 </button>
               </div>
@@ -137,4 +137,13 @@ export default class XXXComponent extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.container{
+  width:650px;
+  height: auto;
+}
+
+.btn{
+  margin-left: 15px;
+}
+</style>
