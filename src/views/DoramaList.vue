@@ -75,11 +75,22 @@ export default class XXXComponent extends Vue {
    * ドラマを検索する.
    */
   searchDorama(): void {
+    console.log("ok");
+
     // エラー処理
     if (this.searchText === "") {
       this.errorMessage = "検索ワードが入力されていません";
     }
     this.errorMessage = "";
+    for (let dorama of this.doramaList) {
+      if (dorama.name.includes(this.searchText)) {
+        this.doramaList.push(dorama);
+      }
+    }
+
+    if (this.doramaList.length === 0) {
+      this.errorMessage = "該当する作品がありません";
+    }
   }
 }
 </script>
