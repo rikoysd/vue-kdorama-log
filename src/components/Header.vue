@@ -9,8 +9,8 @@
           <!-- <router-link to="/login">ログイン</router-link> -->
           <router-link to="/doramaList" class="menu">ドラマ一覧</router-link>
           <router-link to="/watchList" class="menu">ウォッチリスト</router-link>
-          <router-link to="/login" class="menu">ログイン</router-link>
-          <router-link to="/logout" class="menu">ログアウト</router-link>
+          <router-link to="/login" class="menu" v-if="isLogin">ログイン</router-link>
+          <router-link to="/logout" class="menu" v-else>ログアウト</router-link>
           <router-link to="/registerUser" class="menu">新規登録</router-link>
           <router-link to="/myPage" class="menu">マイページ</router-link>
         </div>
@@ -22,16 +22,27 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 @Component
-export default class XXXComponent extends Vue {}
+export default class XXXComponent extends Vue {
+
+  private isLogin = true;
+
+
+}
 </script>
 
 <style scoped>
+header {
+  background-color: rgb(207, 181, 223);
+}
+
 .navi {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
   padding: 20px;
   height: 80px;
   line-height: 60px;
-  margin-bottom: 10px;
 }
 
 .menu {
