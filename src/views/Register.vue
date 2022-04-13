@@ -1,50 +1,40 @@
 <template>
-  <div class="container">
-    <div class="register-log">
-      <div class="tab">
-        <button type="button" class="menu menu-btn" v-on:click="inputLogInfo">
-          手動で入力する
-        </button>
-        <button type="button" class="menu menu-btn" v-on:click="serchName">
-          作品を検索する
-        </button>
+  <div class="position">
+    <div class="container">
+      <div class="register-log">
+        <div v-show="showLogInfo">
+          <div class="item">
+            <div>タイトル(必須)</div>
+            <div class="error">{{ titleError }}</div>
+            <input type="text" v-model="title" />
+          </div>
+          <div class="item">
+            <div>鑑賞日</div>
+            <input type="date" v-model="watchDate" />
+          </div>
+          <div class="item">
+            <div>画像</div>
+            <image-comp></image-comp>
+          </div>
+          <div class="item">
+            <div>感想(必須)</div>
+            <div class="error">{{ textError }}</div>
+            <textarea cols="30" rows="10" v-model="text"></textarea>
+          </div>
+          <button
+            class="btn waves-effect waves-light register-btn"
+            type="button"
+            name="action"
+            v-on:click="registerLog"
+          >
+            登録する
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
       </div>
-      <div v-show="showLogInfo">
-        <div class="item">
-          <div>タイトル(必須)</div>
-          <div class="error">{{ titleError }}</div>
-          <input type="text" v-model="title" />
-        </div>
-        <div class="item">
-          <div>鑑賞日</div>
-          <input type="date" v-model="watchDate" />
-        </div>
-        <div class="item">
-          <div>画像</div>
-          <image-comp></image-comp>
-        </div>
-        <div class="item">
-          <div>感想(必須)</div>
-          <div class="error">{{ textError }}</div>
-          <textarea cols="30" rows="10" v-model="text"></textarea>
-        </div>
-        <button
-          class="btn waves-effect waves-light pink lighten-3"
-          type="button"
-          name="action"
-          v-on:click="registerLog"
-        >
-          登録する
-          <i class="material-icons right">send</i>
-        </button>
-      </div>
-      <div v-show="searchLog">
-        <div>作品を検索する</div>
-        <div class="text">
-          <input type="text" size="30" v-model="serchWord" />
-        </div>
-        <div><button type="button">検索する</button></div>
-      </div>
+    </div>
+    <div>
+      <log-list></log-list>
     </div>
   </div>
 </template>
@@ -52,11 +42,13 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import ImageComp from "@/components/ImageComp.vue";
+import LogList from "@/components/LogList.vue";
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import db from "@/firebase";
 @Component({
   components: {
     ImageComp,
+    LogList,
   },
 })
 export default class XXXComponent extends Vue {
@@ -78,22 +70,6 @@ export default class XXXComponent extends Vue {
   private searchLog = false;
   // 検索ワード
   private serchWord = "";
-
-  /**
-   * 「手動で入力」タブの表示
-   */
-  inputLogInfo(): void {
-    this.showLogInfo = true;
-    this.searchLog = false;
-  }
-
-  /**
-   * 「作品を検索する」タブの表示
-   */
-  serchName(): void {
-    this.searchLog = true;
-    this.showLogInfo = false;
-  }
 
   /**
    * 鑑賞作品を登録する.
@@ -141,6 +117,12 @@ export default class XXXComponent extends Vue {
 </script>
 
 <style scoped>
+.position {
+  display: flex;
+  justify-content: center;
+  width: 1200px;
+}
+
 .register-log {
   margin-top: 40px;
   text-align: center;
@@ -149,15 +131,14 @@ export default class XXXComponent extends Vue {
 }
 
 .container {
-  width: 650px;
+  width: 600px;
   height: auto;
-  padding: 50px;
-  margin-top: 50px;
+  padding: 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
   background-color: #ffffff;
   border-radius: 10px;
-  margin: 0 auto;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  margin-top: 20px;
 }
 
 textarea {
@@ -174,10 +155,10 @@ textarea {
   margin: 0 15px;
 }
 
-.menu-btn {
+.register-btn {
   width: 150px;
   height: 40px;
-  background-color: #f48fb1;
+  background-color: rgb(223, 153, 175);
   border: none;
   border-radius: 3px;
   color: white;
@@ -188,7 +169,7 @@ textarea {
   cursor: pointer;
 }
 
-.menu-btn:hover {
+.register-btn:hover {
   opacity: 0.8;
 }
 

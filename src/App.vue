@@ -28,6 +28,6 @@ export default class App extends Vue {
 
 <style>
 #app{
-  background-color: rgb(233, 222, 239);
+  background-color: rgb(239, 222, 229);
 }
 </style>

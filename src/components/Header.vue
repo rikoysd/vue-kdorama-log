@@ -5,10 +5,8 @@
         <div>
           <router-link to="/" class="menu">TOP</router-link>
           <router-link to="/register" class="menu">登録</router-link>
-          <router-link to="/logList" class="menu">一覧</router-link>
           <!-- <router-link to="/login">ログイン</router-link> -->
           <router-link to="/doramaList" class="menu">ドラマ一覧</router-link>
-          <router-link to="/watchList" class="menu">ウォッチリスト</router-link>
           <router-link to="/login" class="menu" v-if="isLogin">ログイン</router-link>
           <router-link to="/logout" class="menu" v-else>ログアウト</router-link>
           <router-link to="/registerUser" class="menu">新規登録</router-link>
@@ -32,7 +30,7 @@ export default class XXXComponent extends Vue {
 
 <style scoped>
 header {
-  background-color: rgb(207, 181, 223);
+  background-color: rgb(223, 181, 194);
 }
 
 .navi {

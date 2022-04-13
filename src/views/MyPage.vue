@@ -26,7 +26,11 @@ import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
   register(): void {
-    this.$router.push("/");
+    this.$router.push("/register");
+  }
+
+  searchDorama(): void {
+    this.$router.push("/doramaList");
   }
 
   myWatchList(): void {
@@ -59,7 +63,7 @@ export default class XXXComponent extends Vue {
   width: 270px;
   height: 80px;
   align-items: center;
-  background-color: #fbdce6;
+  background-color: rgba(223, 181, 194, 0.724);
   border-radius: 3px;
   border: solid 1px;
 }
