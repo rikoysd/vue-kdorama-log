@@ -140,7 +140,7 @@ img {
   height: 40px;
   margin-top: 10px;
   margin-left: 10px;
-  background-color: #f48fb1;
+  background-color: rgb(223, 153, 175);
   border: none;
   color: white;
   font-size: 13px;

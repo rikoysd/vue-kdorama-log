@@ -63,7 +63,7 @@ export default class XXXComponent extends Vue {
   width: 270px;
   height: 80px;
   align-items: center;
-  background-color: #fbdce6;
+  background-color: rgba(223, 181, 194, 0.724);
   border-radius: 3px;
   border: solid 1px;
 }

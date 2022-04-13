@@ -22,7 +22,7 @@
             <textarea cols="30" rows="10" v-model="text"></textarea>
           </div>
           <button
-            class="btn waves-effect waves-light pink lighten-3"
+            class="btn waves-effect waves-light register-btn"
             type="button"
             name="action"
             v-on:click="registerLog"
@@ -117,7 +117,7 @@ export default class XXXComponent extends Vue {
 </script>
 
 <style scoped>
-.position{
+.position {
   display: flex;
   justify-content: center;
   width: 1200px;
@@ -135,7 +135,7 @@ export default class XXXComponent extends Vue {
   height: auto;
   padding: 40px;
   margin-top: 40px;
-  margin-bottom:40px;
+  margin-bottom: 40px;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -155,10 +155,10 @@ textarea {
   margin: 0 15px;
 }
 
-.menu-btn {
+.register-btn {
   width: 150px;
   height: 40px;
-  background-color: #f48fb1;
+  background-color: rgb(223, 153, 175);
   border: none;
   border-radius: 3px;
   color: white;
@@ -169,7 +169,7 @@ textarea {
   cursor: pointer;
 }
 
-.menu-btn:hover {
+.register-btn:hover {
   opacity: 0.8;
 }
 

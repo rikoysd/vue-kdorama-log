@@ -30,7 +30,7 @@ export default class XXXComponent extends Vue {
 
 <style scoped>
 header {
-  background-color: rgb(207, 181, 223);
+  background-color: rgb(223, 181, 194);
 }
 
 .navi {
