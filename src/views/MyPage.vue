@@ -26,7 +26,11 @@ import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
   register(): void {
-    this.$router.push("/");
+    this.$router.push("/register");
+  }
+
+  searchDorama(): void {
+    this.$router.push("/doramaList");
   }
 
   myWatchList(): void {
