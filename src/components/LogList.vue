@@ -84,6 +84,7 @@ export default class XXXComponent extends Vue {
   padding: 10px;
   text-align: center;
   margin: 0 auto;
+  margin-right: 30px;
   margin-bottom: 15px;
   background-color: white;
   border-radius: 5px;
