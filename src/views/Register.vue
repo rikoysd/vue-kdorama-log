@@ -14,7 +14,7 @@
           </div>
           <div class="item">
             <div>画像</div>
-            <image-comp></image-comp>
+            <image-comp v-on:upload="upload"></image-comp>
           </div>
           <div class="item">
             <div>感想(必須)</div>
@@ -45,6 +45,9 @@ import ImageComp from "@/components/ImageComp.vue";
 import LogList from "@/components/LogList.vue";
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import db from "@/firebase";
+import "firebase/auth";
+import "firebase/storage";
+import firebase from "@/firebase";
 @Component({
   components: {
     ImageComp,
@@ -56,6 +59,8 @@ export default class XXXComponent extends Vue {
   private title = "";
   // 感想
   private text = "";
+  // 画像ファイル
+  private imageFile = "";
   // 鑑賞日
   private watchDate = "";
   // タイトルのエラー
@@ -70,6 +75,16 @@ export default class XXXComponent extends Vue {
   private searchLog = false;
   // 検索ワード
   private serchWord = "";
+
+  /**
+   * アップロードした画像パスを取得.
+   *
+   */
+  upload(file: string): void {
+    //アップロードしたい画像の情報を取得
+    this.imageFile = file;
+    console.log(this.imageFile);
+  }
 
   /**
    * 鑑賞作品を登録する.
@@ -89,6 +104,7 @@ export default class XXXComponent extends Vue {
     if (this.errorChecker === false) {
       return;
     }
+
 
     // 成功の処理
     try {

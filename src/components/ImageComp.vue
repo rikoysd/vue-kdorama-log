@@ -18,13 +18,16 @@ export default {
   uploadFile(){
     const file = this.$refs.preview.files[0];
     this.url = URL.createObjectURL(file);
+    // アップロードファイルのurlを親に渡す
+    this.$emit("upload",this.url);
+    console.log("ok");
   }
 }
 }
 </script>
 
 <style scoped>
-img{
+img {
   width: 200px;
 }
 </style>
