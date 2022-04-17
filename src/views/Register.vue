@@ -33,25 +33,19 @@
         </div>
       </div>
     </div>
-    <div>
-      <log-list></log-list>
-    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import ImageComp from "@/components/ImageComp.vue";
-import LogList from "@/components/LogList.vue";
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import db from "@/firebase";
 import "firebase/auth";
 import "firebase/storage";
-import firebase from "@/firebase";
 @Component({
   components: {
     ImageComp,
-    LogList,
   },
 })
 export default class XXXComponent extends Vue {
