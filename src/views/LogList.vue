@@ -1,42 +1,42 @@
 <template>
-  <div>
+  <div class="block">
     <div class="btn-position">
-      <button type="button" class="button" v-on:click="registerLog">
+      <button type="button" class="register-btn" v-on:click="registerLog">
         新規登録
       </button>
-      <button type="button" v-on:click="onClick" class="button btn-color">
+      <button type="button" v-on:click="onClick" class="delete-btn btn-color">
         削除
       </button>
     </div>
     <div class="search-box col s12">
-      <div>{{ searchError }}</div>
-      <div class="input-field col s6">
+      <div>
+        <div>{{ searchError }}</div>
         <input
           type="text"
           placeholder="タイトルで検索"
           v-model="searchWord"
           class="validate"
         />
-      </div>
-      <button type="button" v-on:click="searchTitle">検索</button>
-      <div>
-        <select
-          name="sort"
-          id="sort"
-          v-model="sorting"
-          v-on:change="sortByUser"
-        >
-          <option value="latestDate">登録が新しい順</option>
-          <option value="oldestDate">登録が古い順</option>
-          <option value="name">五十音順</option>
-        </select>
+        <button type="button" class="search-btn" v-on:click="searchTitle">検索</button>
+        <div>
+          <select
+            name="sort"
+            id="sort"
+            v-model="sorting"
+            v-on:change="sortByUser"
+          >
+            <option value="latestDate">登録が新しい順</option>
+            <option value="oldestDate">登録が古い順</option>
+            <option value="name">五十音順</option>
+          </select>
+        </div>
       </div>
     </div>
     <div>{{ searchResultError }}</div>
-    <div class="loglist">
-      <div>{{ errorMessage }}</div>
-      <div class="item dir" v-show="showDir">フォルダを作成する</div>
-      <div v-show="canShow">
+    <div>
+      <!-- <div>{{ errorMessage }}</div>
+      <div class="item dir" v-show="showDir">フォルダを作成する</div> -->
+      <div v-show="canShow" class="loglist">
         <div
           class="item"
           v-for="(log, index) of currentLogList"
@@ -246,6 +246,11 @@ export default class XXXComponent extends Vue {
 </script>
 
 <style scoped>
+.block{
+  background-color: rgb(239, 222, 229);
+}
+
+
 .loglist {
   margin-top: 50px;
   text-align: center;
@@ -299,15 +304,55 @@ export default class XXXComponent extends Vue {
   opacity: 0.8;
 }
 
+.register-btn {
+  width: 150px;
+  height: 40px;
+  background-color: rgb(226, 136, 165);
+  border: none;
+  color: white;
+  font-size: 13px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.delete-btn {
+  width: 150px;
+  height: 40px;
+  margin-left: 10px;
+  border: none;
+  color: white;
+  font-size: 13px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.register-btn:hover {
+  opacity: 0.8;
+}
+
+.delete-btn:hover {
+  opacity: 0.8;
+}
+
 .btn-color {
-  background-color: rgb(236, 87, 87);
+  background-color: rgb(222, 97, 97);
 }
 
 .btn-position {
   text-align: center;
+  margin-bottom: 30px;
 }
 
 .search-box {
-  width: 500px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-btn{
+  margin-left: 5px;
 }
 </style>
