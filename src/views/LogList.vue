@@ -1,23 +1,24 @@
 <template>
   <div class="block">
-    <div class="btn-position">
-      <button type="button" class="register-btn" v-on:click="registerLog">
-        新規登録
-      </button>
-      <button type="button" v-on:click="onClick" class="delete-btn btn-color">
-        削除
-      </button>
-    </div>
     <div class="search-box col s12">
       <div>
         <div>{{ searchError }}</div>
-        <input
-          type="text"
-          placeholder="タイトルで検索"
-          v-model="searchWord"
-          class="validate"
-        />
-        <button type="button" class="search-btn" v-on:click="searchTitle">検索</button>
+        <div class="search">
+          <div class="input-field col s6">
+            <input
+              placeholder="タイトルで検索"
+              id="first_name"
+              type="text"
+              v-model="searchWord"
+              class="validate"
+            />
+          </div>
+          <div>
+            <button type="button" class="search-btn" v-on:click="searchTitle">
+              検索
+            </button>
+          </div>
+        </div>
         <div>
           <select
             name="sort"
@@ -33,6 +34,14 @@
       </div>
     </div>
     <div>{{ searchResultError }}</div>
+    <div class="btn-position">
+      <button type="button" class="register-btn" v-on:click="registerLog">
+        新規登録
+      </button>
+      <button type="button" v-on:click="onClick" class="delete-btn btn-color">
+        削除
+      </button>
+    </div>
     <div>
       <!-- <div>{{ errorMessage }}</div>
       <div class="item dir" v-show="showDir">フォルダを作成する</div> -->
@@ -246,10 +255,9 @@ export default class XXXComponent extends Vue {
 </script>
 
 <style scoped>
-.block{
+.block {
   background-color: rgb(239, 222, 229);
 }
-
 
 .loglist {
   margin-top: 50px;
@@ -306,7 +314,7 @@ export default class XXXComponent extends Vue {
 
 .register-btn {
   width: 150px;
-  height: 40px;
+  height: 25px;
   background-color: rgb(226, 136, 165);
   border: none;
   color: white;
@@ -319,7 +327,7 @@ export default class XXXComponent extends Vue {
 
 .delete-btn {
   width: 150px;
-  height: 40px;
+  height: 25px;
   margin-left: 10px;
   border: none;
   color: white;
@@ -344,7 +352,7 @@ export default class XXXComponent extends Vue {
 
 .btn-position {
   text-align: center;
-  margin-bottom: 30px;
+  margin: 20px 0;
 }
 
 .search-box {
@@ -352,7 +360,35 @@ export default class XXXComponent extends Vue {
   justify-content: center;
 }
 
-.search-btn{
+.search-btn {
   margin-left: 5px;
+  width: 80px;
+  height: 30px;
+  background-color: rgb(226, 136, 165);
+  border: none;
+  color: white;
+  font-size: 13px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.search-btn:hover {
+  opacity: 0.7;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+select {
+  width: 300px;
+  height: 50px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 </style>
