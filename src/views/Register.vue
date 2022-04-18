@@ -4,9 +4,9 @@
       <div class="register-log">
         <div v-show="showLogInfo">
           <div class="item">
-            <div>タイトル(必須)</div>
+            <label for="title">タイトル(必須)</label>
             <div class="error">{{ titleError }}</div>
-            <input type="text" v-model="title" />
+            <input type="text" id="title" v-model="title" />
           </div>
           <div class="item">
             <div>鑑賞日</div>
@@ -17,9 +17,9 @@
             <image-comp v-on:upload="upload"></image-comp>
           </div>
           <div class="item">
-            <div>感想(必須)</div>
+            <label for="text">感想(必須)</label>
             <div class="error">{{ textError }}</div>
-            <textarea cols="50" rows="8" v-model="text"></textarea>
+            <textarea cols="50" rows="8" id="text" v-model="text"></textarea>
           </div>
           <button
             class="btn waves-effect waves-light register-btn"
@@ -97,7 +97,6 @@ export default class XXXComponent extends Vue {
     if (this.errorChecker === false) {
       return;
     }
-
 
     // 成功の処理
     try {
