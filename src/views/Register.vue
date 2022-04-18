@@ -19,7 +19,7 @@
           <div class="item">
             <div>感想(必須)</div>
             <div class="error">{{ textError }}</div>
-            <textarea cols="30" rows="10" v-model="text"></textarea>
+            <textarea cols="50" rows="8" v-model="text"></textarea>
           </div>
           <button
             class="btn waves-effect waves-light register-btn"
@@ -28,7 +28,6 @@
             v-on:click="registerLog"
           >
             登録する
-            <i class="material-icons right">send</i>
           </button>
         </div>
       </div>
@@ -141,7 +140,7 @@ export default class XXXComponent extends Vue {
 }
 
 .container {
-  width: 600px;
+  width: 550px;
   height: auto;
   padding: 40px;
   margin-top: 40px;
@@ -170,7 +169,6 @@ textarea {
   height: 40px;
   background-color: rgb(223, 153, 175);
   border: none;
-  border-radius: 3px;
   color: white;
   font-size: 13px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,

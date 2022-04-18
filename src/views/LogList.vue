@@ -1,20 +1,38 @@
 <template>
   <div>
-    <div>
-      <button type="button" v-on:click="registerLog">新規登録</button>
-      <button type="button" v-on:click="onClick">削除</button>
+    <div class="btn-position">
+      <button type="button" class="button" v-on:click="registerLog">
+        新規登録
+      </button>
+      <button type="button" v-on:click="onClick" class="button btn-color">
+        削除
+      </button>
     </div>
-    <div>
+    <div class="search-box col s12">
       <div>{{ searchError }}</div>
-      <input type="text" placeholder="タイトルで検索" v-model="searchWord" />
+      <div class="input-field col s6">
+        <input
+          type="text"
+          placeholder="タイトルで検索"
+          v-model="searchWord"
+          class="validate"
+        />
+      </div>
       <button type="button" v-on:click="searchTitle">検索</button>
-      <select name="sort" id="sort" v-model="sorting" v-on:change="sortByUser">
-        <option value="latestDate">登録が新しい順</option>
-        <option value="oldestDate">登録が古い順</option>
-        <option value="name">五十音順</option>
-      </select>
-      <div>{{ searchResultError }}</div>
+      <div>
+        <select
+          name="sort"
+          id="sort"
+          v-model="sorting"
+          v-on:change="sortByUser"
+        >
+          <option value="latestDate">登録が新しい順</option>
+          <option value="oldestDate">登録が古い順</option>
+          <option value="name">五十音順</option>
+        </select>
+      </div>
     </div>
+    <div>{{ searchResultError }}</div>
     <div class="loglist">
       <div>{{ errorMessage }}</div>
       <div class="item dir" v-show="showDir">フォルダを作成する</div>
@@ -283,5 +301,13 @@ export default class XXXComponent extends Vue {
 
 .btn-color {
   background-color: rgb(236, 87, 87);
+}
+
+.btn-position {
+  text-align: center;
+}
+
+.search-box {
+  width: 500px;
 }
 </style>
