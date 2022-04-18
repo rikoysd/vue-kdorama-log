@@ -19,7 +19,7 @@ import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
   // 表示されている作品
-  private currentLog = new Log(0, "", "");
+  private currentLog = new Log(0, "", "", "");
   // ログ一覧
   private currentLogList = Array<Log>();
 
@@ -33,7 +33,7 @@ export default class XXXComponent extends Vue {
       // console.log(data);
       for (let i = 0; i < data.length; i++) {
         this.currentLogList.push(
-          new Log(data[i].id, data[i].title, data[i].text)
+          new Log(data[i].id, data[i].title, data[i].text, data[i].watchDate)
         );
       }
     });

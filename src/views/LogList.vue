@@ -5,11 +5,15 @@
       <button type="button" v-on:click="onClick">削除</button>
     </div>
     <div>
+      <div>{{ searchError }}</div>
+      <input type="text" placeholder="タイトルで検索" v-model="searchWord" />
+      <button type="button" v-on:click="searchTitle">検索</button>
       <select name="sort" id="sort" v-model="sorting" v-on:change="sortByUser">
         <option value="latestDate">登録が新しい順</option>
         <option value="oldestDate">登録が古い順</option>
         <option value="name">五十音順</option>
       </select>
+      <div>{{ searchResultError }}</div>
     </div>
     <div class="loglist">
       <div>{{ errorMessage }}</div>
@@ -70,6 +74,12 @@ export default class XXXComponent extends Vue {
   private showDeleteButton = false;
   // フォルダの表示・非表示
   private showDir = true;
+  // 検索ワード
+  private searchWord = "";
+  // 検索エラー
+  private searchError = "";
+  // 検索結果エラー
+  private searchResultError = "";
 
   async created(): Promise<void> {
     // データを取り出す（コレクションごと）
@@ -80,8 +90,14 @@ export default class XXXComponent extends Vue {
 
       for (let i = 0; i < data.length; i++) {
         this.currentLogList.push(
-          new Log(data[i].id, data[i].title, data[i].text)
+          new Log(data[i].id, data[i].title, data[i].text, data[i].watchDate)
         );
+        this.$store.commit("showLogList", {
+          id: data[i].id,
+          title: data[i].title,
+          text: data[i].text,
+          watchDate: data[i].watchDate,
+        });
       }
 
       // 降順（新しい順）に並べる
@@ -91,8 +107,6 @@ export default class XXXComponent extends Vue {
         });
       }
     });
-
-    console.log(this.currentLogList);
 
     if (this.currentLogList.length === 0) {
       this.showDir = false;
@@ -106,7 +120,67 @@ export default class XXXComponent extends Vue {
    * 削除ボタンを表示させる.
    */
   onClick(): void {
-    this.showDeleteButton = true;
+    if (this.showDeleteButton === false) {
+      this.showDeleteButton = true;
+    } else {
+      this.showDeleteButton = false;
+    }
+  }
+
+  /**
+   * 検索する.
+   */
+  async searchTitle(): Promise<void> {
+    // ログリストを空にする
+    this.currentLogList.splice(0, this.currentLogList.length);
+    // データを取り出す（コレクションごと）
+    const listData = collection(db, "ログ一覧");
+    await getDocs(listData).then((snapShot) => {
+      const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
+      // console.log(data);
+
+      for (let i = 0; i < data.length; i++) {
+        this.currentLogList.push(
+          new Log(data[i].id, data[i].title, data[i].text, data[i].watchDate)
+        );
+        this.$store.commit("showLogList", {
+          id: data[i].id,
+          title: data[i].title,
+          text: data[i].text,
+          watchDate: data[i].watchDate,
+        });
+      }
+    });
+    console.log(this.currentLogList);
+
+    if (this.searchWord === "") {
+      this.searchError = "検索ワードを入力してください";
+      return;
+    }
+    this.searchError = "";
+
+    // ログの名前を部分一致検索
+    let logArray = this.currentLogList.splice(0, this.currentLogList.length);
+    // ループ回数を定義
+    let loopBreakCount = logArray.length - 1;
+    for (let i = 0; i < logArray.length; i++) {
+      if (logArray[i].title.includes(this.searchWord) === true) {
+        this.currentLogList.push(logArray[i]);
+        console.log("OK");
+      } else {
+        console.log("NG");
+      }
+
+      // ループ回数になったらループ終了
+      if (i === loopBreakCount) {
+        break;
+      }
+    }
+    if (this.currentLogList.length === 0) {
+      this.searchResultError = "該当する作品がありません";
+    } else {
+      this.searchResultError = "";
+    }
   }
 
   /**
@@ -208,6 +282,6 @@ export default class XXXComponent extends Vue {
 }
 
 .btn-color {
-  background-color: rgb(173, 173, 173);
+  background-color: rgb(236, 87, 87);
 }
 </style>

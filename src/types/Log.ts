@@ -13,8 +13,8 @@ export class Log {
     private _title: string,
     // 感想
     private _text: string,
-    // // 鑑賞日
-    // private _watchDate: Date
+    // 鑑賞日
+    private _watchDate: string,
   ) {}
 
   /**
@@ -49,11 +49,11 @@ export class Log {
     this._text = text;
   }
 
-  // public get watchDate(): Date {
-  //   return this._watchDate;
-  // }
+  public get watchDate(): string {
+    return this._watchDate;
+  }
 
-  // public set watchDate(watchDate: Date) {
-  //   this._watchDate = watchDate;
-  // }
+  public set watchDate(watchDate: string) {
+    this._watchDate = watchDate;
+  }
 }
