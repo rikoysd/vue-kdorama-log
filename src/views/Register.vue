@@ -4,9 +4,9 @@
       <div class="register-log">
         <div v-show="showLogInfo">
           <div class="item">
-            <div>タイトル(必須)</div>
+            <label for="title">タイトル(必須)</label>
             <div class="error">{{ titleError }}</div>
-            <input type="text" v-model="title" />
+            <input type="text" id="title" v-model="title" />
           </div>
           <div class="item">
             <div>鑑賞日</div>
@@ -14,12 +14,12 @@
           </div>
           <div class="item">
             <div>画像</div>
-            <image-comp></image-comp>
+            <image-comp v-on:upload="upload"></image-comp>
           </div>
           <div class="item">
-            <div>感想(必須)</div>
+            <label for="text">感想(必須)</label>
             <div class="error">{{ textError }}</div>
-            <textarea cols="30" rows="10" v-model="text"></textarea>
+            <textarea cols="50" rows="8" id="text" v-model="text"></textarea>
           </div>
           <button
             class="btn waves-effect waves-light register-btn"
@@ -28,13 +28,9 @@
             v-on:click="registerLog"
           >
             登録する
-            <i class="material-icons right">send</i>
           </button>
         </div>
       </div>
-    </div>
-    <div>
-      <log-list></log-list>
     </div>
   </div>
 </template>
@@ -42,13 +38,13 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import ImageComp from "@/components/ImageComp.vue";
-import LogList from "@/components/LogList.vue";
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import db from "@/firebase";
+import "firebase/auth";
+import "firebase/storage";
 @Component({
   components: {
     ImageComp,
-    LogList,
   },
 })
 export default class XXXComponent extends Vue {
@@ -56,6 +52,8 @@ export default class XXXComponent extends Vue {
   private title = "";
   // 感想
   private text = "";
+  // 画像ファイル
+  private imageFile = "";
   // 鑑賞日
   private watchDate = "";
   // タイトルのエラー
@@ -70,6 +68,16 @@ export default class XXXComponent extends Vue {
   private searchLog = false;
   // 検索ワード
   private serchWord = "";
+
+  /**
+   * アップロードした画像パスを取得.
+   *
+   */
+  upload(file: string): void {
+    //アップロードしたい画像の情報を取得
+    this.imageFile = file;
+    console.log(this.imageFile);
+  }
 
   /**
    * 鑑賞作品を登録する.
@@ -131,7 +139,7 @@ export default class XXXComponent extends Vue {
 }
 
 .container {
-  width: 600px;
+  width: 550px;
   height: auto;
   padding: 40px;
   margin-top: 40px;
@@ -160,7 +168,6 @@ textarea {
   height: 40px;
   background-color: rgb(223, 153, 175);
   border: none;
-  border-radius: 3px;
   color: white;
   font-size: 13px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,

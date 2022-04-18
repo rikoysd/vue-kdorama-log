@@ -8,6 +8,9 @@
       <button type="button" class="menu" v-on:click="register">
         <i class="small material-icons">border_color</i>作品を登録する
       </button>
+      <button type="button" class="menu" v-on:click="logList">
+        <i class="small material-icons">border_color</i>作品一覧
+      </button>
       <button type="button" class="menu" v-on:click="searchDorama">
         <i class="small material-icons">search</i>気になるドラマを検索する
       </button>
@@ -27,6 +30,10 @@ import { Component, Vue } from "vue-property-decorator";
 export default class XXXComponent extends Vue {
   register(): void {
     this.$router.push("/register");
+  }
+
+  logList(): void {
+    this.$router.push("/logList");
   }
 
   searchDorama(): void {

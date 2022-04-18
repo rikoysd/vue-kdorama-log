@@ -1,3 +1,5 @@
+import { Log } from "@/types/Log";
+import { LogList } from "@/types/LogList";
 import Vue from "vue";
 import Vuex from "vuex";
 
@@ -5,6 +7,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    logList: new LogList(0, 0, []),
     isLogin: false,
   },
   mutations: {
@@ -17,6 +20,12 @@ export default new Vuex.Store({
     logoutUser(state) {
       state.isLogin = false;
     },
+
+    showLogList(state, payload) {
+      state.logList.logLists.push(
+        new Log(payload.id, payload.title, payload.text, payload.watchDate)
+      );
+    },
   },
   actions: {},
   getters: {
@@ -28,6 +37,15 @@ export default new Vuex.Store({
     isLogin(state) {
       return state.isLogin;
     },
+
+    /**
+     * ログ一覧を取得する.
+     * @param state - ステート
+     * @returns ログ一覧
+     */
+    getLogList(state){
+      return state.logList.logLists;
+    }
   },
   modules: {},
 });

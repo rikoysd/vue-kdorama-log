@@ -29,7 +29,7 @@ import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
   // 表示されている作品
-  private currentLog = new Log(0, "", "");
+  private currentLog = new Log(0, "", "", "");
   // 作品一覧
   private logList = new Array<Log>();
   // タイトル
@@ -54,7 +54,9 @@ export default class XXXComponent extends Vue {
       const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
       // console.log(data);
       for (let i = 0; i < data.length; i++) {
-        this.logList.push(new Log(data[i].id, data[i].title, data[i].text));
+        this.logList.push(
+          new Log(data[i].id, data[i].title, data[i].text, data[i].watchDate)
+        );
       }
     });
     this.currentLog = this.logList.filter((log) => log.id === logId)[0];
@@ -118,8 +120,8 @@ export default class XXXComponent extends Vue {
   margin-top: 20px;
 }
 
-.button{
-  width:120px;
+.button {
+  width: 120px;
   height: 35px;
   margin-left: 10px;
   background-color: #f48fb1;

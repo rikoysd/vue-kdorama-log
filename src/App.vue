@@ -16,7 +16,7 @@ import M from "materialize-css/dist/js/materialize.min";
   },
 })
 export default class App extends Vue {
-   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   mounted() {
     //cdnのインストールが必要。mountedだとタイミングが合わないので、時間をずらした。
     setTimeout(() => {
@@ -27,7 +27,8 @@ export default class App extends Vue {
 </script>
 
 <style>
-#app{
+#app {
   background-color: rgb(239, 222, 229);
+  height: auto;
 }
 </style>
