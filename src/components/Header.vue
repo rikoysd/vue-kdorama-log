@@ -7,7 +7,9 @@
           <router-link to="/register" class="menu">登録</router-link>
           <router-link to="/logList">一覧</router-link>
           <router-link to="/doramaList" class="menu">ドラマ一覧</router-link>
-          <router-link to="/login" class="menu" v-if="isLogin">ログイン</router-link>
+          <router-link to="/login" class="menu" v-if="isLogin"
+            >ログイン</router-link
+          >
           <router-link to="/logout" class="menu" v-else>ログアウト</router-link>
           <router-link to="/registerUser" class="menu">新規登録</router-link>
           <router-link to="/myPage" class="menu">マイページ</router-link>
@@ -21,10 +23,7 @@
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
-
   private isLogin = true;
-
-
 }
 </script>
 
