@@ -201,6 +201,7 @@ export default class XXXComponent extends Vue {
     this.password = "";
     this.passwordConfirmation = "";
     this.errorMessage = "";
+    this.errorName = "";
     this.errorMailAddress = "";
     this.errorPassword = "";
     this.errorPasswordConfirmation = "";
@@ -222,6 +223,11 @@ export default class XXXComponent extends Vue {
   border-radius: 10px;
   margin: 0 auto;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.error {
+  font-size: 13px;
+  color: rgb(210, 53, 53);
 }
 
 .register-btn {
