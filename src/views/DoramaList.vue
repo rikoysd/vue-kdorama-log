@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="whole">
     <search-button></search-button>
     <div class="items">
       <div class="list" v-for="dorama of doramaList" v-bind:key="dorama.id">
@@ -72,11 +72,15 @@ export default class XXXComponent extends Vue {
 </script>
 
 <style scoped>
+@import url("/css/background.css");
+
 .items {
   display: flex;
   /* 自動的に複数行になる */
   flex-wrap: wrap;
   justify-content: center;
+  background-color: rgb(239, 222, 229);
+  height: auto;
 }
 
 .list {

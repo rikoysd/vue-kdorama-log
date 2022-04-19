@@ -29,7 +29,8 @@ export default class XXXComponent extends Vue {
 
 <style scoped>
 header {
-  background-color: rgb(223, 181, 194);
+  max-width: 1920px;
+  height: 80px;
 }
 
 .navi {
@@ -40,6 +41,7 @@ header {
   padding: 20px;
   height: 80px;
   line-height: 60px;
+  background-color: rgb(223, 181, 194);
 }
 
 .menu {

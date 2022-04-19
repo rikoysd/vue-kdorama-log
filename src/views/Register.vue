@@ -21,14 +21,6 @@
             <div class="error">{{ textError }}</div>
             <textarea cols="50" rows="8" id="text" v-model="text"></textarea>
           </div>
-          <button
-            class="btn waves-effect waves-light register-btn"
-            type="button"
-            name="action"
-            v-on:click="registerLog"
-          >
-            登録する
-          </button>
         </div>
       </div>
     </div>

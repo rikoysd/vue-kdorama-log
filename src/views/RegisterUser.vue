@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="whole">
     <form class="form">
       <div class="top-wrapper">
         <div class="container">
@@ -60,12 +60,20 @@
               </div>
             </div>
             <div class="row register-admin-btn">
-              <button class="btn" type="button" v-on:click="registerUser">
-                <span>登録<i class="material-icons right">done</i></span>
-              </button>
-              <button type="button" v-on:click="reset" class="clear-btn">
-                クリア
-              </button>
+              <div>
+                <button
+                  class="register-btn"
+                  type="button"
+                  v-on:click="registerUser"
+                >
+                  <span>登録</span>
+                </button>
+              </div>
+              <div>
+                <button type="button" v-on:click="reset" class="clear-btn">
+                  クリア
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -201,15 +209,58 @@ export default class XXXComponent extends Vue {
 </script>
 
 <style scoped>
+@import url("/css/background.css");
+
+.form {
+  padding: 45px 0;
+}
+
 .top-wrapper {
-  width: 700px;
-  height: auto;
+  width: 650px;
   padding: 20px;
-  margin-top: 50px;
   background-color: #ffffff;
   border-radius: 10px;
   margin: 0 auto;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  margin-top: 20px;
+}
+
+.register-btn {
+  width: 150px;
+  height: 40px;
+  margin-right: 20px;
+  background-color: rgb(223, 153, 175);
+  border: none;
+  color: white;
+  font-size: 13px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.register-btn:hover {
+  opacity: 0.8;
+}
+
+.register-admin-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.clear-btn {
+  width: 150px;
+  height: 40px;
+  background-color: rgb(223, 153, 175);
+  border: none;
+  color: white;
+  font-size: 13px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  opacity: 0.8;
 }
 </style>

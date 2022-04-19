@@ -257,6 +257,7 @@ export default class XXXComponent extends Vue {
 <style scoped>
 .block {
   background-color: rgb(239, 222, 229);
+  height: 100vh;
 }
 
 .loglist {
