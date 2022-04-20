@@ -1,9 +1,17 @@
 <template>
   <div class="whole">
     <div class="search-box">
-      <div>{{ errorMessage }}</div>
-      <input type="text" class="search- name" v-model="searchText" />
-      <button type="button" v-on:click="searchWord">検索する</button>
+      <div class="error">{{ errorMessage }}</div>
+      <div class="search-erea">
+        <div>
+          <input type="text" class="search- name" v-model="searchText" />
+        </div>
+        <div>
+          <button type="button" class="search-btn" v-on:click="searchWord">
+            検索する
+          </button>
+        </div>
+      </div>
     </div>
     <div class="items">
       <div class="list" v-for="dorama of doramaList" v-bind:key="dorama.id">
@@ -133,6 +141,10 @@ export default class XXXComponent extends Vue {
 
 <style scoped>
 @import url("/css/background.css");
+.error {
+  padding: 10px;
+  color: red;
+}
 
 .items {
   display: flex;
@@ -175,4 +187,29 @@ img:hover {
   width: 300px;
   margin-bottom: 30px;
 }
+
+.search-btn {
+  margin-left: 5px;
+  width: 80px;
+  height: 30px;
+  background-color: rgb(226, 136, 165);
+  border: none;
+  color: white;
+  font-size: 13px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.search-btn:hover {
+  opacity: 0.7;
+}
+
+.search-erea{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 </style>
