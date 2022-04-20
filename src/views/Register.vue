@@ -26,7 +26,7 @@
               <button
                 class="register-btn"
                 type="button"
-                v-on:click="registerUser"
+                v-on:click="registerLog"
               >登録</button>
             </div>
           </div>

@@ -43,8 +43,8 @@
       </button>
     </div>
     <div>
-      <!-- <div>{{ errorMessage }}</div>
-      <div class="item dir" v-show="showDir">フォルダを作成する</div> -->
+      <div class="error">{{ errorMessage }}</div>
+      <!-- <div class="item dir" v-show="showDir">フォルダを作成する</div> -->
       <div v-show="canShow" class="loglist">
         <div
           class="item"
@@ -213,10 +213,16 @@ export default class XXXComponent extends Vue {
   /**
    * ログを削除する.
    */
-  deleteLog(index: number): void {
+  async deleteLog(index: number): Promise<void> {
     //データを削除する
     alert("本当にこのログを削除しますか？");
-    deleteDoc(doc(db, "ログ一覧", ""));
+    await deleteDoc(doc(db, "ログ一覧", this.currentLogList[index].title));
+
+    this.currentLogList.splice(index, 1);
+
+    if (this.currentLogList.length === 0) {
+      this.errorMessage = "鑑賞した作品がありません";
+    }
   }
 
   /**
@@ -249,7 +255,7 @@ export default class XXXComponent extends Vue {
    * ログを登録する.
    */
   registerLog(): void {
-    this.$router.push("/register");
+    this.$router.push("/");
   }
 }
 </script>
@@ -391,5 +397,10 @@ select {
   text-align: center;
   display: flex;
   justify-content: center;
+}
+
+.error{
+  color: red;
+  text-align: center;
 }
 </style>
