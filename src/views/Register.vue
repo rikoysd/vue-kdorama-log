@@ -1,25 +1,34 @@
 <template>
-  <div class="position">
-    <div class="container">
-      <div class="register-log">
-        <div v-show="showLogInfo">
-          <div class="item">
-            <label for="title">タイトル(必須)</label>
-            <div class="error">{{ titleError }}</div>
-            <input type="text" id="title" v-model="title" />
-          </div>
-          <div class="item">
-            <div>鑑賞日</div>
-            <input type="date" v-model="watchDate" />
-          </div>
-          <div class="item">
-            <div>画像</div>
-            <image-comp v-on:upload="upload"></image-comp>
-          </div>
-          <div class="item">
-            <label for="text">感想(必須)</label>
-            <div class="error">{{ textError }}</div>
-            <textarea cols="50" rows="8" id="text" v-model="text"></textarea>
+  <div class="whole">
+    <div class="position">
+      <div class="container">
+        <div class="register-log">
+          <div v-show="showLogInfo">
+            <div class="item">
+              <label for="title">タイトル(必須)</label>
+              <div class="error">{{ titleError }}</div>
+              <input type="text" id="title" v-model="title" />
+            </div>
+            <div class="item">
+              <div>鑑賞日</div>
+              <input type="date" v-model="watchDate" />
+            </div>
+            <div class="item">
+              <div>画像</div>
+              <image-comp v-on:upload="upload"></image-comp>
+            </div>
+            <div class="item">
+              <label for="text">感想(必須)</label>
+              <div class="error">{{ textError }}</div>
+              <textarea cols="50" rows="8" id="text" v-model="text"></textarea>
+            </div>
+            <div class="item">
+              <button
+                class="register-btn"
+                type="button"
+                v-on:click="registerUser"
+              >登録</button>
+            </div>
           </div>
         </div>
       </div>
@@ -117,6 +126,8 @@ export default class XXXComponent extends Vue {
 </script>
 
 <style scoped>
+@import url("/css/background.css");
+
 .position {
   display: flex;
   justify-content: center;
@@ -132,10 +143,9 @@ export default class XXXComponent extends Vue {
 
 .container {
   width: 550px;
-  height: auto;
   padding: 40px;
   margin-top: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;

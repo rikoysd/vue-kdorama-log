@@ -1,6 +1,10 @@
 <template>
   <div class="whole">
-    <search-button></search-button>
+    <div class="search-box">
+      <div>{{ errorMessage }}</div>
+      <input type="text" class="search- name" v-model="searchText" />
+      <button type="button" v-on:click="searchWord">検索する</button>
+    </div>
     <div class="items">
       <div class="list" v-for="dorama of doramaList" v-bind:key="dorama.id">
         <div>
@@ -28,17 +32,14 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { Dorama } from "@/types/Dorama";
-import SearchButton from "@/components/SearchButton.vue";
 
-@Component({
-  components: {
-    SearchButton,
-  },
-})
+@Component
 export default class XXXComponent extends Vue {
   private doramaList = new Array<Dorama>();
+  private searchText = "";
+  private errorMessage = "";
 
-  created(): void {
+  async created(): Promise<void> {
     //データを取り出す(1つ取得)
     /* onSnapshot(doc(db, "ドラマ一覧", "トッケビ"), (doc) => {
       this.dorama.id = { ...doc.data() }.id;
@@ -51,7 +52,7 @@ export default class XXXComponent extends Vue {
 
     // データを取り出す（コレクションごと）
     const listData = collection(db, "ドラマ一覧");
-    getDocs(listData).then((snapShot) => {
+    await getDocs(listData).then((snapShot) => {
       const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
       // console.log(data);
 
@@ -65,6 +66,65 @@ export default class XXXComponent extends Vue {
             data[i].story
           )
         );
+      }
+    });
+  }
+
+  /**
+   * ドラマを検索する.
+   */
+  async searchWord(): Promise<void> {
+    // ログリストを空にする
+    this.doramaList.splice(0, this.doramaList.length);
+    // データを取り出す（コレクションごと）
+    const listData = collection(db, "ドラマ一覧");
+    await getDocs(listData).then((snapShot) => {
+      const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
+      console.log(data);
+
+      for (let i = 0; i < data.length; i++) {
+        this.doramaList.push(
+          new Dorama(
+            data[i].id,
+            data[i].image,
+            data[i].name,
+            data[i].release,
+            data[i].story
+          )
+        );
+      }
+
+      // エラー処理
+      if (this.searchText === "") {
+        this.errorMessage = "検索ワードが入力されていません";
+        return;
+      }
+      this.errorMessage = "";
+
+      console.log(this.doramaList);
+
+      // ドラマ名部分一致検索
+      let logArray = this.doramaList.splice(0, this.doramaList.length);
+      // ループ回数を定義
+      let loopBreakCount = logArray.length - 1;
+      for (let i = 0; i < logArray.length; i++) {
+        if (logArray[i].name.includes(this.searchText)) {
+          this.doramaList.push(logArray[i]);
+          console.log("OK");
+        } else {
+          console.log("NG");
+        }
+
+        // ループ回数になったらループ終了
+        if (i === loopBreakCount) {
+          break;
+        }
+      }
+
+      if (this.doramaList.length === 0) {
+        this.errorMessage = "該当する作品がありません";
+      } else {
+        this.errorMessage = "";
       }
     });
   }
@@ -108,5 +168,11 @@ img:hover {
   opacity: 0.8;
   top: -3px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.search-box {
+  margin: 0 auto;
+  width: 300px;
+  margin-bottom: 30px;
 }
 </style>
