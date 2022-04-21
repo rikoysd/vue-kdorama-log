@@ -8,12 +8,12 @@
           <router-link to="/doramaList" class="menu">ドラマ一覧</router-link>
           <router-link to="/watchList" class="menu">ウォッチリスト</router-link>
           <router-link to="/top" class="menu">トップ</router-link>
-          <!-- <router-link to="/login" class="menu" v-if="isLogin"
+          <router-link to="/login" class="menu" v-if="isLogin"
             >ログイン</router-link
           >
-          <router-link to="/logout" class="menu" v-else>ログアウト</router-link>
-          <router-link to="/" class="menu">新規登録</router-link>
-          <router-link to="/myPage" class="menu">マイページ</router-link> -->
+          <!-- <router-link to="/logout" class="menu" v-else>ログアウト</router-link> -->
+          <router-link to="/registerUser" class="menu">新規登録</router-link>
+          <router-link to="/myPage" class="menu">マイページ</router-link>
         </div>
       </div>
     </header>
