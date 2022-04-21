@@ -4,7 +4,7 @@
       <div><img v-bind:src="require(`@/assets/${dorama.image}`)" /></div>
       <div>
         <div class="title">{{ dorama.name }}({{ dorama.release }})</div>
-        <div>★評価</div>
+        <!-- <div>★評価</div> -->
         <div>
           <button
             type="button"
@@ -14,7 +14,21 @@
           >
             {{ addMessage }}
           </button>
-          <router-link tag="button" class="button" :to="'/registerDorama/'+ dorama.id">観た</router-link>
+          <router-link
+            tag="button"
+            class="button"
+            :to="'/registerDorama/' + dorama.id"
+            v-if="canRegister"
+            >観た</router-link
+          >
+          <router-link
+            tag="button"
+            class="button btn-large disabled btn-position"
+            :to="'/registerDorama/' + dorama.id"
+            v-else
+          >
+            <div>観た</div>
+          </router-link>
         </div>
         <div class="story">{{ dorama.story }}</div>
       </div>
@@ -30,6 +44,7 @@
 <script lang="ts">
 import db from "@/firebase";
 import { Dorama } from "@/types/Dorama";
+import { Log } from "@/types/Log";
 import { User } from "@/types/User";
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { Component, Vue } from "vue-property-decorator";
@@ -46,7 +61,11 @@ export default class XXXComponent extends Vue {
   // ウォッチリスト追加のメッセージ
   private addMessage = "見たいリストに追加する";
   // 見たいリスト追加ボタンの非押下
-  private canClick = true;
+  private canClick = false;
+  // 観たボタンの非押下
+  private canRegister = true;
+  // 作品一覧
+  private logList = new Array<Log>();
 
   async created(): Promise<void> {
     const doramaId = Number(this.$route.params.id);
@@ -69,6 +88,21 @@ export default class XXXComponent extends Vue {
     });
 
     this.dorama = this.doramaList.filter((dorama) => dorama.id == doramaId)[0];
+
+    const logList = collection(db, "ログ一覧");
+    await getDocs(logList).then((snapShot) => {
+      const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
+      // console.log(data);
+      for (let i = 0; i < data.length; i++) {
+        this.logList.push(
+          new Log(data[i].id, data[i].title, data[i].text, data[i].date)
+        );
+      }
+    });
+
+    if (this.logList.filter((log) => log.title === this.dorama.name)[0]) {
+      this.canRegister = false;
+    }
   }
 
   async addList(): Promise<void> {
@@ -166,6 +200,10 @@ img {
 
 .button:hover {
   opacity: 0.8;
+}
+
+.btn-position {
+  margin-bottom: 12px;
 }
 
 .position {
