@@ -34,26 +34,8 @@ export default class XXXComponent extends Vue {
   private currentUser = new User(0, "", "", "", []);
 
   async created(): Promise<void> {
-    const loginUser = collection(db, "ログインユーザー");
-    await getDocs(loginUser).then((snapShot) => {
-      const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
-
-      if (data.length === 0) {
-        this.$router.push("/login");
-        return;
-      }
-
-      this.currentUser = new User(
-        data[0].id,
-        data[0].name,
-        data[0].mail,
-        data[0].password,
-        data[0].watchList
-      );
-    });
-
-    // ログインユーザーのウォッチリストを取得
-    const listData = collection(db, this.currentUser.name + "のウォッチリスト");
+    // ウォッチリストを取得
+    const listData = collection(db, "ウォッチリスト");
     getDocs(listData).then((snapShot) => {
       const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
 

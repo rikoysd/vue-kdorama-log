@@ -10,9 +10,12 @@
             type="button"
             class="button"
             v-on:click="addList"
-            v-bind:disabled="canClick"
+            v-if="watchList"
           >
-            {{ addMessage }}
+            観たいリストに追加する
+          </button>
+          <button type="button" class="button" v-on:click="addList" v-else>
+            観たいリストから外す
           </button>
           <router-link
             tag="button"
@@ -27,7 +30,7 @@
             :to="'/registerDorama/' + dorama.id"
             v-else
           >
-            <div>観た</div>
+            <div>登録済</div>
           </router-link>
         </div>
         <div class="story">{{ dorama.story }}</div>
@@ -46,7 +49,13 @@ import db from "@/firebase";
 import { Dorama } from "@/types/Dorama";
 import { Log } from "@/types/Log";
 import { User } from "@/types/User";
-import { collection, doc, getDocs, setDoc } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  setDoc,
+} from "firebase/firestore";
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
@@ -58,14 +67,14 @@ export default class XXXComponent extends Vue {
   private currentIsLogin = true;
   // 現在のログイン中のユーザー
   private currentUser = new User(0, "", "", "", []);
-  // ウォッチリスト追加のメッセージ
-  private addMessage = "見たいリストに追加する";
-  // 見たいリスト追加ボタンの非押下
-  private canClick = false;
   // 観たボタンの非押下
   private canRegister = true;
   // 作品一覧
   private logList = new Array<Log>();
+  // ウォッチリスト追加ボタン切り替え
+  private watchList = true;
+  // ウォッチリスト
+  private currentWatchList = new Array<Dorama>();
 
   async created(): Promise<void> {
     const doramaId = Number(this.$route.params.id);
@@ -89,6 +98,31 @@ export default class XXXComponent extends Vue {
 
     this.dorama = this.doramaList.filter((dorama) => dorama.id == doramaId)[0];
 
+    const watchList = collection(db, "ウォッチリスト");
+    await getDocs(watchList).then((snapShot) => {
+      const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
+      console.log(data);
+      for (let i = 0; i < data.length; i++) {
+        this.currentWatchList.push(
+          new Dorama(
+            data[i].id,
+            data[i].image,
+            data[i].name,
+            data[i].release,
+            data[i].story
+          )
+        );
+      }
+    });
+
+    if (
+      this.currentWatchList.filter(
+        (dorama) => dorama.name === this.dorama.name
+      )[0]
+    ) {
+      this.watchList = false;
+    }
+
     const logList = collection(db, "ログ一覧");
     await getDocs(logList).then((snapShot) => {
       const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
@@ -106,42 +140,31 @@ export default class XXXComponent extends Vue {
   }
 
   async addList(): Promise<void> {
-    // データを取り出す（コレクションごと）
-    const listData = collection(db, "ログインユーザー");
-    await getDocs(listData).then((snapShot) => {
-      const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
-
-      if (data.length === 0) {
-        this.$router.push("/login");
-        return;
-      }
-
-      this.currentUser = new User(
-        data[0].id,
-        data[0].name,
-        data[0].mail,
-        data[0].password,
-        data[0].watchList
-      );
-    });
-
     const { id, image, name, release, story } = this.dorama;
 
-    try {
-      // ドキュメントを更新する
-      await setDoc(doc(db, this.currentUser.name + "のウォッチリスト", name), {
-        id: id,
-        image: image,
-        name: name,
-        release: release,
-        story: story,
-      });
-      this.canClick = false;
-      this.addMessage = "リストに追加されました";
-      console.log(this.canClick);
-    } catch (e) {
-      console.error("Error adding document: ", e);
+    // ウォッチリストに追加する場合
+    if (this.watchList === true) {
+      try {
+        // ドキュメントを更新する
+        await setDoc(doc(db, "ウォッチリスト", name), {
+          id: id,
+          image: image,
+          name: name,
+          release: release,
+          story: story,
+        });
+        this.watchList = false;
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+      return;
     }
+
+    // ウォッチリストから削除する場合
+    await deleteDoc(
+      doc(db, this.currentUser.name + "のウォッチリスト", this.dorama.name)
+    );
+    this.watchList = true;
   }
 
   /**
