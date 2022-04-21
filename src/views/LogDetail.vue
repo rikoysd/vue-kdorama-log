@@ -51,10 +51,12 @@ export default class XXXComponent extends Vue {
       // console.log(data);
       for (let i = 0; i < data.length; i++) {
         this.currentLogList.push(
-          new Log(data[i].id, data[i].title, data[i].text, data[i].watchDate)
+          new Log(data[i].id, data[i].title, data[i].text, data[i].date)
         );
       }
     });
+
+    console.log(this.currentLogList);
 
     this.currentLog = this.currentLogList.filter((log) => log.id == logId)[0];
   }

@@ -8,6 +8,12 @@
         </div>
         <input type="text" id="title" v-model="title" />
       </div>
+      <div class="item">
+        <div class="title">
+          <label for="watchDate">鑑賞日</label>
+        </div>
+        <input type="date" id="watchDate" v-model="watchDate" />
+      </div>
       <div class="error">{{ textError }}</div>
       <div class="item">
         <div class="title"><label for="text">感想(必須)</label></div>
@@ -41,7 +47,7 @@ export default class XXXComponent extends Vue {
   // 感想
   private text = "";
   // 鑑賞日
-  // private watchDate = new Date();
+  private watchDate = "";
   // タイトルのエラー
   private titleError = "";
   // 感想のエラー
@@ -59,7 +65,7 @@ export default class XXXComponent extends Vue {
       // console.log(data);
       for (let i = 0; i < data.length; i++) {
         this.logList.push(
-          new Log(data[i].id, data[i].title, data[i].text, data[i].watchDate)
+          new Log(data[i].id, data[i].title, data[i].text, data[i].date)
         );
       }
     });
@@ -67,6 +73,7 @@ export default class XXXComponent extends Vue {
     console.log(this.currentLog);
     this.title = this.currentLog.title;
     this.text = this.currentLog.text;
+    this.watchDate = this.currentLog.watchDate;
   }
 
   /**
