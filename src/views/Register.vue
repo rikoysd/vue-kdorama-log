@@ -71,6 +71,8 @@ export default class XXXComponent extends Vue {
   private searchLog = false;
   // 検索ワード
   private serchWord = "";
+   // idリスト
+  private idList = Array<number>();
 
   /**
    * アップロードした画像パスを取得.
@@ -108,8 +110,14 @@ export default class XXXComponent extends Vue {
       let logId = 0;
       await getDocs(listData).then((snapShot) => {
         const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
+        
+         for (let i = 0; i < data.length; i++) {
+          this.idList.push(data[i].id);
+        }
+
         // idを採番
-        logId = data.length + 1;
+        logId = Math.max(...this.idList) + 1;
+
       });
       //データを追加する
       const docRef = await setDoc(doc(db, "ログ一覧", this.title), {
