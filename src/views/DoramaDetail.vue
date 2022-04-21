@@ -162,7 +162,7 @@ export default class XXXComponent extends Vue {
 
     // ウォッチリストから削除する場合
     await deleteDoc(
-      doc(db, this.currentUser.name + "のウォッチリスト", this.dorama.name)
+      doc(db, "ウォッチリスト", this.dorama.name)
     );
     this.watchList = true;
   }

@@ -5,24 +5,26 @@
         <div class="register-log">
           <div v-show="showLogInfo">
             <div class="item">
-              <label for="title">タイトル(必須)</label>
+              <div>
+                <label for="title" class="title">タイトル(必須)</label>
+              </div>
               <div class="error">{{ titleError }}</div>
               <input type="text" id="title" v-model="title" />
             </div>
             <div class="item">
-              <div>鑑賞日</div>
+              <div class="title">鑑賞日</div>
               <input type="date" v-model="watchDate" />
             </div>
             <div class="item">
-              <div>画像</div>
+              <div class="title">画像</div>
               <image-comp v-on:upload="upload"></image-comp>
             </div>
             <div class="item">
-              <label for="text">感想(必須)</label>
+              <label for="text" class="title">感想(必須)</label>
               <div class="error">{{ textError }}</div>
               <textarea cols="50" rows="8" id="text" v-model="text"></textarea>
             </div>
-            <div class="item">
+            <div class="item btn-position">
               <button
                 class="register-btn"
                 type="button"
@@ -71,7 +73,7 @@ export default class XXXComponent extends Vue {
   private searchLog = false;
   // 検索ワード
   private serchWord = "";
-   // idリスト
+  // idリスト
   private idList = Array<number>();
 
   /**
@@ -110,14 +112,13 @@ export default class XXXComponent extends Vue {
       let logId = 0;
       await getDocs(listData).then((snapShot) => {
         const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
-        
-         for (let i = 0; i < data.length; i++) {
+
+        for (let i = 0; i < data.length; i++) {
           this.idList.push(data[i].id);
         }
 
         // idを採番
         logId = Math.max(...this.idList) + 1;
-
       });
       //データを追加する
       const docRef = await setDoc(doc(db, "ログ一覧", this.title), {
@@ -148,9 +149,14 @@ export default class XXXComponent extends Vue {
 }
 
 .register-log {
-  text-align: center;
+  text-align: left;
   width: 400px;
   margin: 0 auto;
+}
+
+.btn-position {
+  display: flex;
+  justify-content: center;
 }
 
 .container {
@@ -164,6 +170,13 @@ export default class XXXComponent extends Vue {
 
 textarea {
   height: 200px;
+}
+
+.title {
+  margin-bottom: 8px;
+  color: rgb(156, 156, 156);
+  font-size: 13px;
+  text-align: left;
 }
 
 .menu {
@@ -188,7 +201,7 @@ textarea {
 }
 
 .error {
-  font-size: 10px;
+  font-size: 13px;
   color: red;
 }
 
