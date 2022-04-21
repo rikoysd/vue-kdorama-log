@@ -1,15 +1,21 @@
 <template>
-  <div class="items">
-    <div class="list" v-for="dorama of currentWatchList" v-bind:key="dorama.id">
-      <div>
-        <router-link v-bind:to="'/doramaDetail/' + dorama.id"
-          ><img v-bind:src="require(`@/assets/${dorama.image}`)"
-        /></router-link>
+  <div class="whole">
+    <div class="items">
+      <div
+        class="list"
+        v-for="dorama of currentWatchList"
+        v-bind:key="dorama.id"
+      >
+        <div>
+          <router-link v-bind:to="'/doramaDetail/' + dorama.id"
+            ><img v-bind:src="require(`@/assets/${dorama.image}`)"
+          /></router-link>
+        </div>
+        <router-link v-bind:to="'/doramaDetail/' + dorama.id">{{
+          dorama.name
+        }}</router-link>
+        <div>{{ dorama.release }}年</div>
       </div>
-      <router-link v-bind:to="'/doramaDetail/' + dorama.id">{{
-        dorama.name
-      }}</router-link>
-      <div>{{ dorama.release }}年</div>
     </div>
   </div>
 </template>
@@ -68,6 +74,12 @@ export default class XXXComponent extends Vue {
 </script>
 
 <style scoped>
+@import url("/css/background.css");
+
+.whole {
+  padding: 60px 0;
+}
+
 .items {
   display: flex;
   /* 自動的に複数行になる */
