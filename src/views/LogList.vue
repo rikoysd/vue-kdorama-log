@@ -1,5 +1,5 @@
 <template>
-  <div class="block">
+  <div class="whole">
     <div class="search-box col s12">
       <div>
         <div>{{ searchError }}</div>
@@ -193,11 +193,8 @@ export default class XXXComponent extends Vue {
     for (let i = 0; i < logArray.length; i++) {
       if (logArray[i].title.includes(this.searchWord) === true) {
         this.currentLogList.push(logArray[i]);
-        console.log("OK");
-      } else {
-        console.log("NG");
-      }
-
+      } 
+      
       // ループ回数になったらループ終了
       if (i === loopBreakCount) {
         break;
@@ -261,9 +258,11 @@ export default class XXXComponent extends Vue {
 </script>
 
 <style scoped>
-.block {
-  background-color: rgb(239, 222, 229);
-  height: 100vh;
+@import url("/css/background.css");
+
+.whole{
+  padding:30px;
+  height:auto;
 }
 
 .loglist {

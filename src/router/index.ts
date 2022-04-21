@@ -10,6 +10,11 @@ const routes: Array<RouteConfig> = [
       import(/* webpackChunkName: "about" */ "../views/Register.vue"),
   },
   {
+    path: "/top",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Top.vue"),
+  },
+  {
     path: "/logList",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/LogList.vue"),
@@ -44,26 +49,26 @@ const routes: Array<RouteConfig> = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/RegisterDorama.vue"),
   },
-  // {
-  //   path: "/login",
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/Login.vue"),
-  // },
+  {
+    path: "/login",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Login.vue"),
+  },  
   // {
   //   path: "/logout",
   //   component: () =>
   //     import(/* webpackChunkName: "about" */ "../views/Logout.vue"),
   // },
-  // {
-  //   path: "/",
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/RegisterUser.vue"),
-  // },
-  // {
-  //   path: "/myPage",
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/MyPage.vue"),
-  // },
+  {
+    path: "/registerUser",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/RegisterUser.vue"),
+  },
+  {
+    path: "/myPage",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/MyPage.vue"),
+  },
 ];
 
 const router = new VueRouter({

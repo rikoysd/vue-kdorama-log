@@ -1,15 +1,21 @@
 <template>
-  <div class="items">
-    <div class="list" v-for="dorama of currentWatchList" v-bind:key="dorama.id">
-      <div>
-        <router-link v-bind:to="'/doramaDetail/' + dorama.id"
-          ><img v-bind:src="require(`@/assets/${dorama.image}`)"
-        /></router-link>
+  <div class="whole">
+    <div class="items">
+      <div
+        class="list"
+        v-for="dorama of currentWatchList"
+        v-bind:key="dorama.id"
+      >
+        <div>
+          <router-link v-bind:to="'/doramaDetail/' + dorama.id"
+            ><img v-bind:src="require(`@/assets/${dorama.image}`)"
+          /></router-link>
+        </div>
+        <router-link v-bind:to="'/doramaDetail/' + dorama.id">{{
+          dorama.name
+        }}</router-link>
+        <div>{{ dorama.release }}年</div>
       </div>
-      <router-link v-bind:to="'/doramaDetail/' + dorama.id">{{
-        dorama.name
-      }}</router-link>
-      <div>{{ dorama.release }}年</div>
     </div>
   </div>
 </template>
@@ -28,26 +34,8 @@ export default class XXXComponent extends Vue {
   private currentUser = new User(0, "", "", "", []);
 
   async created(): Promise<void> {
-    const loginUser = collection(db, "ログインユーザー");
-    await getDocs(loginUser).then((snapShot) => {
-      const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
-
-      if (data.length === 0) {
-        this.$router.push("/login");
-        return;
-      }
-
-      this.currentUser = new User(
-        data[0].id,
-        data[0].name,
-        data[0].mail,
-        data[0].password,
-        data[0].watchList
-      );
-    });
-
-    // ログインユーザーのウォッチリストを取得
-    const listData = collection(db, this.currentUser.name + "のウォッチリスト");
+    // ウォッチリストを取得
+    const listData = collection(db, "ウォッチリスト");
     getDocs(listData).then((snapShot) => {
       const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
 
@@ -68,6 +56,12 @@ export default class XXXComponent extends Vue {
 </script>
 
 <style scoped>
+@import url("/css/background.css");
+
+.whole {
+  padding: 60px 0;
+}
+
 .items {
   display: flex;
   /* 自動的に複数行になる */
