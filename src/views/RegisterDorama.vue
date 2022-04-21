@@ -31,9 +31,12 @@
         <button type="button" class="button" v-on:click="registerDorama">
           登録
         </button>
-        <!-- <button type="button" class="button" v-on:click="backLogDetail">
-          戻る
-        </button> -->
+        <router-link
+          tag="button"
+          class="button"
+          :to="'/doramaDetail/' + currentDorama.id"
+          >戻る</router-link
+        >
       </div>
     </div>
   </div>
