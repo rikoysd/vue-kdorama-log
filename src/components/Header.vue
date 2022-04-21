@@ -7,6 +7,7 @@
           <router-link to="/logList">一覧</router-link>
           <router-link to="/doramaList" class="menu">ドラマ一覧</router-link>
           <router-link to="/watchList" class="menu">ウォッチリスト</router-link>
+          <router-link to="/top" class="menu">トップ</router-link>
           <!-- <router-link to="/login" class="menu" v-if="isLogin"
             >ログイン</router-link
           >

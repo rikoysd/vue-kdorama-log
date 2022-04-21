@@ -10,6 +10,11 @@ const routes: Array<RouteConfig> = [
       import(/* webpackChunkName: "about" */ "../views/Register.vue"),
   },
   {
+    path: "/top",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Top.vue"),
+  },
+  {
     path: "/logList",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/LogList.vue"),
