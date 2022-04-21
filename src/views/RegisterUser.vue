@@ -110,6 +110,8 @@ export default class XXXComponent extends Vue {
   private errorChecker = true;
   // 送信チェック
   private submitChecker = true;
+  // idリスト
+  private idList = Array<number>();
 
   /**
    * ユーザー情報を登録する.
@@ -160,8 +162,14 @@ export default class XXXComponent extends Vue {
       let userId = 0;
       await getDocs(listData).then((snapShot) => {
         const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
+
+        for (let i = 0; i < data.length; i++) {
+          this.idList.push(data[i].id);
+        }
+
         // idを採番
-        userId = data.length + 1;
+        userId = Math.max(...this.idList) + 1;
+
         // メールアドレスで同じものがあれば、エラー文を出す
         for (let i = 0; i < data.length; i++) {
           if (this.mailAddress === data[i].mail) {
@@ -212,15 +220,18 @@ export default class XXXComponent extends Vue {
 <style scoped>
 @import url("/css/background.css");
 
+.whole {
+  height: auto;
+}
+
 .form {
   padding: 45px 0;
 }
 
 .top-wrapper {
-  width: 650px;
-  padding: 20px;
+  width: 600px;
+  padding: 40px 30px;
   background-color: #ffffff;
-  border-radius: 10px;
   margin: 0 auto;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }

@@ -13,7 +13,7 @@
       </div>
       <div class="btn-erea">
         <div>
-          <router-link to="/" tag="button" class="button">新規登録</router-link>
+          <router-link to="/registerUser" tag="button" class="button">新規登録</router-link>
         </div>
         <div>
           <router-link to="/login" tag="button" class="button"
