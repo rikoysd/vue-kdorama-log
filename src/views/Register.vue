@@ -27,7 +27,9 @@
                 class="register-btn"
                 type="button"
                 v-on:click="registerLog"
-              >登録</button>
+              >
+                登録
+              </button>
             </div>
           </div>
         </div>
@@ -127,25 +129,26 @@ export default class XXXComponent extends Vue {
 
 <style scoped>
 @import url("/css/background.css");
+.whole {
+  height: auto;
+  padding: 60px 0;
+}
 
 .position {
   display: flex;
   justify-content: center;
-  width: 1200px;
 }
 
 .register-log {
-  margin-top: 40px;
   text-align: center;
   width: 400px;
   margin: 0 auto;
 }
 
 .container {
-  width: 550px;
+  width: 600px;
+  height: auto;
   padding: 40px;
-  margin-top: 40px;
-  margin-bottom: 30px;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -153,12 +156,6 @@ export default class XXXComponent extends Vue {
 
 textarea {
   height: 200px;
-}
-
-.tab {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 40px;
 }
 
 .menu {
@@ -179,15 +176,6 @@ textarea {
 }
 
 .register-btn:hover {
-  opacity: 0.8;
-}
-
-.btn {
-  width: 150px;
-  height: 40px;
-}
-
-.btn:hover {
   opacity: 0.8;
 }
 

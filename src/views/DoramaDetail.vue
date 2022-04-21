@@ -125,7 +125,7 @@ export default class XXXComponent extends Vue {
 .container {
   display: flex;
   width: 800px;
-  padding: 30px 0;
+  padding: 60px 0;
 }
 
 img {
@@ -135,7 +135,7 @@ img {
 
 .title {
   font-size: 30px;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .story {
