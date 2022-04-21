@@ -1,16 +1,20 @@
 <template>
-  <div>
+  <div class="whole">
     <div class="edit-log">
       <div class="error">{{ titleError }}</div>
       <div class="item">
-        <div>タイトル(必須)</div>
-        <input type="text" v-model="title" />
+        <div class="title">
+          <label for="title">タイトル(必須)</label>
+        </div>
+        <input type="text" id="title" v-model="title" />
       </div>
       <div class="error">{{ textError }}</div>
       <div class="item">
-        <div>感想(必須)</div>
-        <textarea cols="30" rows="10" v-model="text"></textarea>
+        <div class="title"><label for="text">感想(必須)</label></div>
+        <textarea id="text" cols="30" rows="10" v-model="text"></textarea>
       </div>
+    </div>
+    <div class="btn-erea">
       <button type="button" class="button" v-on:click="overWrightLog">
         上書きする
       </button>
@@ -106,8 +110,13 @@ export default class XXXComponent extends Vue {
 </script>
 
 <style scoped>
+@import url("/css/background.css");
+
+.whole {
+  padding-top: 60px;
+}
+
 .edit-log {
-  margin-top: 90px;
   text-align: center;
   width: 650px;
   height: auto;
@@ -117,16 +126,14 @@ export default class XXXComponent extends Vue {
   border-radius: 10px;
   margin: 0 auto;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  margin-top: 20px;
 }
 
 .button {
-  width: 120px;
-  height: 35px;
+  width: 150px;
+  height: 40px;
   margin-left: 10px;
-  background-color: #f48fb1;
+  background-color: rgb(223, 153, 175);
   border: none;
-  border-radius: 3px;
   color: white;
   font-size: 13px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
@@ -139,10 +146,23 @@ export default class XXXComponent extends Vue {
   opacity: 0.8;
 }
 
+.btn-erea {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+}
+
 .tab {
   display: flex;
   justify-content: center;
   margin-bottom: 40px;
+}
+
+.title {
+  margin-bottom: 8px;
+  color: rgb(156, 156, 156);
+  font-size: 13px;
+  text-align: left;
 }
 
 .menu {

@@ -84,7 +84,6 @@ export default class XXXComponent extends Vue {
 
 .button {
   margin-top: 60px;
-  margin-left: 20px;
 }
 
 .button-erea {
@@ -97,7 +96,7 @@ export default class XXXComponent extends Vue {
   width: 150px;
   height: 40px;
   margin-left: 10px;
-  background-color: rgb(226, 136, 165);
+  background-color: rgb(223, 153, 175);
   border: none;
   color: white;
   font-size: 13px;

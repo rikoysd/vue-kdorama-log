@@ -192,7 +192,7 @@ img:hover {
   margin-left: 5px;
   width: 80px;
   height: 30px;
-  background-color: rgb(226, 136, 165);
+  background-color: rgb(223, 153, 175);
   border: none;
   color: white;
   font-size: 13px;
