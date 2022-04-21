@@ -187,7 +187,7 @@ export default class XXXComponent extends Vue {
       }
 
       //データを追加する
-      const docRef = await setDoc(doc(db, "ユーザー一覧", this.name), {
+      const docRef = await setDoc(doc(db, "ユーザー一覧", String(userId)), {
         id: userId,
         name: this.name,
         mail: this.mailAddress,

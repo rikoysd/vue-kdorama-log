@@ -44,8 +44,8 @@
               <div class="row">
                 <div class="input-field col s6 m6 l6">
                   <p class="margin medium-small">
-                    <router-link to="/"
-                      >管理者登録はこちら</router-link
+                    <router-link to="/registerUser"
+                      >新規登録はこちら</router-link
                     >
                   </p>
                 </div>
@@ -98,8 +98,6 @@ export default class XXXComponent extends Vue {
         }
       });
 
-      console.log(this.userList);
-
       // エラー
       if (this.email === "" || this.password === "") {
         this.errorMessage =
@@ -108,16 +106,22 @@ export default class XXXComponent extends Vue {
       }
       this.errorMessage = "";
 
+      // ループ回数を定義
+      let loopBreakCount = this.userList.length - 1;
       for (let i = 0; i < this.userList.length; i++) {
         if (this.email !== this.userList[i].mail) {
           this.errorMessage = "メールアドレスが間違っています";
-        } else {
-          this.user = this.userList[i];
-          this.errorMessage = "";
+          return;
+        }
+
+        this.user = this.userList[i];
+        this.errorMessage = "";
+
+        // ループ回数になったらループ終了
+        if (i === loopBreakCount) {
+          break;
         }
       }
-
-      // console.log(this.user);
 
       if (this.password !== this.user.password) {
         this.errorMessage = "パスワードが間違っています";
@@ -148,7 +152,7 @@ export default class XXXComponent extends Vue {
 .container {
   width: 650px;
   height: auto;
-  padding: 45px 0;
+  padding: 45px 30px;
 }
 
 .error {

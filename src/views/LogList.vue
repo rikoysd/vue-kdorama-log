@@ -193,11 +193,8 @@ export default class XXXComponent extends Vue {
     for (let i = 0; i < logArray.length; i++) {
       if (logArray[i].title.includes(this.searchWord) === true) {
         this.currentLogList.push(logArray[i]);
-        console.log("OK");
-      } else {
-        console.log("NG");
-      }
-
+      } 
+      
       // ループ回数になったらループ終了
       if (i === loopBreakCount) {
         break;
