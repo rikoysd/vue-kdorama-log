@@ -1,12 +1,30 @@
 <template>
-  <div class="log-detail">
-    <div>
-      <div>タイトル：{{ currentLog.title }}</div>
-      <div>感想：{{ currentLog.text }}</div>
+  <div class="whole">
+    <div class="container">
+      <div>
+        <div class="item">
+          <div class="title">タイトル</div>
+          <div>{{ currentLog.title }}</div>
+        </div>
+        <div class="item item-position">
+          <div class="title">鑑賞日</div>
+          <div>{{ currentLog.watchDate }}</div>
+        </div>
+        <div class="item item-position">
+          <div class="title">感想</div>
+          <div>{{ currentLog.text }}</div>
+        </div>
+      </div>
     </div>
-    <div class="button">
-      <button type="button" v-on:click="editLog">編集する</button>
-      <button type="button" v-on:click="backLogList">一覧に戻る</button>
+    <div class="button-erea">
+      <div class="button">
+        <button type="button" class="btn" v-on:click="editLog">編集する</button>
+      </div>
+      <div class="button">
+        <button type="button" class="btn" v-on:click="backLogList">
+          一覧に戻る
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -33,10 +51,12 @@ export default class XXXComponent extends Vue {
       // console.log(data);
       for (let i = 0; i < data.length; i++) {
         this.currentLogList.push(
-          new Log(data[i].id, data[i].title, data[i].text, data[i].watchDate)
+          new Log(data[i].id, data[i].title, data[i].text, data[i].date)
         );
       }
     });
+
+    console.log(this.currentLogList);
 
     this.currentLog = this.currentLogList.filter((log) => log.id == logId)[0];
   }
@@ -58,8 +78,58 @@ export default class XXXComponent extends Vue {
 </script>
 
 <style scoped>
-.log-detail {
-  margin-top: 100px;
-  text-align: center;
+@import url("/css/background.css");
+
+.whole {
+  padding-top: 60px;
+}
+
+.button {
+  margin-top: 60px;
+}
+
+.button-erea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  width: 150px;
+  height: 40px;
+  margin-left: 10px;
+  background-color: rgb(223, 153, 175);
+  border: none;
+  color: white;
+  font-size: 13px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.container {
+  width: 650px;
+  height: auto;
+  padding: 30px 50px;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.item-position {
+  margin-top: 25px;
+}
+
+.title {
+  margin-bottom: 8px;
+  color: rgb(156, 156, 156);
+  font-size: 13px;
 }
 </style>

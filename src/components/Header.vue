@@ -3,14 +3,15 @@
     <header>
       <div class="navi">
         <div>
-          <router-link to="/" class="menu">TOP</router-link>
-          <router-link to="/register" class="menu">登録</router-link>
+          <router-link to="/" class="menu">登録</router-link>
           <router-link to="/logList">一覧</router-link>
           <router-link to="/doramaList" class="menu">ドラマ一覧</router-link>
-          <router-link to="/login" class="menu" v-if="isLogin">ログイン</router-link>
+          <!-- <router-link to="/login" class="menu" v-if="isLogin"
+            >ログイン</router-link
+          >
           <router-link to="/logout" class="menu" v-else>ログアウト</router-link>
-          <router-link to="/registerUser" class="menu">新規登録</router-link>
-          <router-link to="/myPage" class="menu">マイページ</router-link>
+          <router-link to="/" class="menu">新規登録</router-link>
+          <router-link to="/myPage" class="menu">マイページ</router-link> -->
         </div>
       </div>
     </header>
@@ -21,16 +22,14 @@
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
-
   private isLogin = true;
-
-
 }
 </script>
 
 <style scoped>
 header {
-  background-color: rgb(223, 181, 194);
+  max-width: 1920px;
+  height: 80px;
 }
 
 .navi {
@@ -41,6 +40,7 @@ header {
   padding: 20px;
   height: 80px;
   line-height: 60px;
+  background-color: rgb(223, 181, 194);
 }
 
 .menu {

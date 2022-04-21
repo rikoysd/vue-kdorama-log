@@ -1,5 +1,5 @@
 <template>
-  <div id="login">
+  <div id="login" class="whole">
     <div class="top-wrapper">
       <div class="container">
         <div class="row login-page">
@@ -31,15 +31,20 @@
                   <label for="password">パスワード</label>
                 </div>
               </div>
-              <div class="row login-btn">
-                <button class="btn margin" type="button" v-on:click="loginUser">
-                  <span>ログイン</span>
+              <div class="row">
+                <button
+                  type="button"
+                  name="action"
+                  class="login-btn"
+                  v-on:click="loginUser"
+                >
+                  ログイン
                 </button>
               </div>
               <div class="row">
                 <div class="input-field col s6 m6 l6">
                   <p class="margin medium-small">
-                    <router-link to="/registerUser/"
+                    <router-link to="/"
                       >管理者登録はこちら</router-link
                     >
                   </p>
@@ -138,12 +143,34 @@ export default class XXXComponent extends Vue {
 </script>
 
 <style scoped>
-.container{
-  width:650px;
+@import url("/css/background.css");
+
+.container {
+  width: 650px;
   height: auto;
+  padding: 45px 0;
 }
 
-.btn{
-  margin-left: 15px;
+.error {
+  margin-top: 12px;
+  color: rgb(210, 53, 53);
+}
+
+.login-btn {
+  width: 150px;
+  height: 40px;
+  background-color: rgb(223, 153, 175);
+  border: none;
+  color: white;
+  font-size: 13px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: 0.3s;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.login-btn:hover {
+  opacity: 0.8;
 }
 </style>

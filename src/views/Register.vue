@@ -1,34 +1,37 @@
 <template>
-  <div class="position">
-    <div class="container">
-      <div class="register-log">
-        <div v-show="showLogInfo">
-          <div class="item">
-            <label for="title">タイトル(必須)</label>
-            <div class="error">{{ titleError }}</div>
-            <input type="text" id="title" v-model="title" />
+  <div class="whole">
+    <div class="position">
+      <div class="container">
+        <div class="register-log">
+          <div v-show="showLogInfo">
+            <div class="item">
+              <label for="title">タイトル(必須)</label>
+              <div class="error">{{ titleError }}</div>
+              <input type="text" id="title" v-model="title" />
+            </div>
+            <div class="item">
+              <div>鑑賞日</div>
+              <input type="date" v-model="watchDate" />
+            </div>
+            <div class="item">
+              <div>画像</div>
+              <image-comp v-on:upload="upload"></image-comp>
+            </div>
+            <div class="item">
+              <label for="text">感想(必須)</label>
+              <div class="error">{{ textError }}</div>
+              <textarea cols="50" rows="8" id="text" v-model="text"></textarea>
+            </div>
+            <div class="item">
+              <button
+                class="register-btn"
+                type="button"
+                v-on:click="registerLog"
+              >
+                登録
+              </button>
+            </div>
           </div>
-          <div class="item">
-            <div>鑑賞日</div>
-            <input type="date" v-model="watchDate" />
-          </div>
-          <div class="item">
-            <div>画像</div>
-            <image-comp v-on:upload="upload"></image-comp>
-          </div>
-          <div class="item">
-            <label for="text">感想(必須)</label>
-            <div class="error">{{ textError }}</div>
-            <textarea cols="50" rows="8" id="text" v-model="text"></textarea>
-          </div>
-          <button
-            class="btn waves-effect waves-light register-btn"
-            type="button"
-            name="action"
-            v-on:click="registerLog"
-          >
-            登録する
-          </button>
         </div>
       </div>
     </div>
@@ -68,6 +71,8 @@ export default class XXXComponent extends Vue {
   private searchLog = false;
   // 検索ワード
   private serchWord = "";
+   // idリスト
+  private idList = Array<number>();
 
   /**
    * アップロードした画像パスを取得.
@@ -105,8 +110,14 @@ export default class XXXComponent extends Vue {
       let logId = 0;
       await getDocs(listData).then((snapShot) => {
         const data = snapShot.docs.map((doc) => ({ ...doc.data() }));
+        
+         for (let i = 0; i < data.length; i++) {
+          this.idList.push(data[i].id);
+        }
+
         // idを採番
-        logId = data.length + 1;
+        logId = Math.max(...this.idList) + 1;
+
       });
       //データを追加する
       const docRef = await setDoc(doc(db, "ログ一覧", this.title), {
@@ -125,25 +136,27 @@ export default class XXXComponent extends Vue {
 </script>
 
 <style scoped>
+@import url("/css/background.css");
+.whole {
+  height: auto;
+  padding: 60px 0;
+}
+
 .position {
   display: flex;
   justify-content: center;
-  width: 1200px;
 }
 
 .register-log {
-  margin-top: 40px;
   text-align: center;
   width: 400px;
   margin: 0 auto;
 }
 
 .container {
-  width: 550px;
+  width: 600px;
   height: auto;
   padding: 40px;
-  margin-top: 40px;
-  margin-bottom: 40px;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -151,12 +164,6 @@ export default class XXXComponent extends Vue {
 
 textarea {
   height: 200px;
-}
-
-.tab {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 40px;
 }
 
 .menu {
@@ -177,15 +184,6 @@ textarea {
 }
 
 .register-btn:hover {
-  opacity: 0.8;
-}
-
-.btn {
-  width: 150px;
-  height: 40px;
-}
-
-.btn:hover {
   opacity: 0.8;
 }
 

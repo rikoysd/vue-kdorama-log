@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="whole">
     <div class="container">
       <div><img v-bind:src="require(`@/assets/${dorama.image}`)" /></div>
       <div>
@@ -14,7 +14,7 @@
           >
             {{ addMessage }}
           </button>
-          <button type="button" class="button">見た</button>
+          <router-link tag="button" class="button" :to="'/registerDorama/'+ dorama.id">観た</router-link>
         </div>
         <div class="story">{{ dorama.story }}</div>
       </div>
@@ -45,6 +45,8 @@ export default class XXXComponent extends Vue {
   private currentUser = new User(0, "", "", "", []);
   // ウォッチリスト追加のメッセージ
   private addMessage = "見たいリストに追加する";
+  // 見たいリスト追加ボタンの非押下
+  private canClick = true;
 
   async created(): Promise<void> {
     const doramaId = Number(this.$route.params.id);
@@ -100,7 +102,9 @@ export default class XXXComponent extends Vue {
         release: release,
         story: story,
       });
+      this.canClick = false;
       this.addMessage = "リストに追加されました";
+      console.log(this.canClick);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -112,13 +116,23 @@ export default class XXXComponent extends Vue {
   backToDoramaList(): void {
     this.$router.push("/doramaList");
   }
+
+  /**
+   * 観たドラマを記録する.
+   */
+  watchedDorama(): void {
+    this.$router.push("'/registerDorama/' + this.dorama.id");
+  }
 }
 </script>
 
 <style scoped>
+@import url("/css/background.css");
+
 .container {
   display: flex;
   width: 800px;
+  padding: 60px 0;
 }
 
 img {
@@ -128,7 +142,7 @@ img {
 
 .title {
   font-size: 30px;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .story {
