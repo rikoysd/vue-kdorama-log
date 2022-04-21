@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="position">
-      <button class="button" type="button" v-on:click="backToDoramaList">
+      <button class="back-btn" type="button" v-on:click="backToDoramaList">
         一覧に戻る
       </button>
     </div>
@@ -162,6 +162,10 @@ export default class XXXComponent extends Vue {
 
 <style scoped>
 @import url("/css/background.css");
+.whole {
+  height: auto;
+  padding-bottom: 40px;
+}
 
 .container {
   display: flex;
@@ -183,9 +187,28 @@ img {
   margin-top: 25px;
 }
 
-.button {
+.back-btn {
   width: 200px;
   height: 40px;
+  margin-top: 10px;
+  margin-left: 10px;
+  background-color: rgb(223, 153, 175);
+  border: none;
+  color: white;
+  font-size: 13px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  opacity: 0.8;
+}
+
+.button {
+  width: 200px;
+  height: 50px;
   margin-top: 10px;
   margin-left: 10px;
   background-color: rgb(223, 153, 175);
