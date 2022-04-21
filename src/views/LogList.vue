@@ -1,5 +1,5 @@
 <template>
-  <div class="block">
+  <div class="whole">
     <div class="search-box col s12">
       <div>
         <div>{{ searchError }}</div>
@@ -261,9 +261,11 @@ export default class XXXComponent extends Vue {
 </script>
 
 <style scoped>
-.block {
-  background-color: rgb(239, 222, 229);
-  height: 100vh;
+@import url("/css/background.css");
+
+.whole{
+  padding:30px;
+  height:auto;
 }
 
 .loglist {
