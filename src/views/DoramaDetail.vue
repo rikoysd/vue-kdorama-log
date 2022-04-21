@@ -14,7 +14,9 @@
           >
             {{ addMessage }}
           </button>
-          <button type="button" class="button">見た</button>
+          <button type="button" class="button" v-on:click="watchedDorama">
+            見た
+          </button>
         </div>
         <div class="story">{{ dorama.story }}</div>
       </div>
@@ -115,6 +117,13 @@ export default class XXXComponent extends Vue {
    */
   backToDoramaList(): void {
     this.$router.push("/doramaList");
+  }
+
+  /**
+   * 観たドラマを記録する.
+   */
+  watchedDorama(): void {
+    this.$router.push("/registerDorama");
   }
 }
 </script>
